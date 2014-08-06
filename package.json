@@ -1,0 +1,26 @@
+{
+  "name": "751words",
+  "version": "0.0.0",
+  "description": "A tool to help you write every day",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Edmeral/751words"
+  },
+  "keywords": [
+    "writing",
+    "webapp",
+    "web-app",
+    "tool"
+  ],
+  "author": "Aissam BELHACHMI <edmeral.aissam@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Edmeral/751words/issues"
+  },
+  "homepage": "https://github.com/Edmeral/751words"
+}
