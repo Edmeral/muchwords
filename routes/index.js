@@ -1,13 +1,16 @@
 var Post = require('../models/post');
 
-module.export = function (app){
+module.export = function (app, passport){
 	app
 		.get('/', function(req, res) {
 			if (req.isAuthenticated())
 				res.redirect('/dashboard');
-			
+
 			else
-				res.render('index.ejs');
+				res.render('index.ejs', {
+					signupMessage: req.flash('signup-message'),
+					loginMessage: req.flash('login-message')
+				 });
 		})
 
 		.get('/dashboard', isLoggedIn, function(req, res) {

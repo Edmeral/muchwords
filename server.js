@@ -27,9 +27,9 @@ app
 	.use(passport.session())
 	.use(flash());
 
-// require('./config/passport')(app, passport);
-// require('./routes/index')(app);
-// require('./routes/api')(app);
+// require('./config/passport')(passport);
+// require('./routes/index')(app, passport);
+// require('./routes/api')(app, passport);
 
 app.listen(port);
 console.log('Head out to http://localhost:' + port);
