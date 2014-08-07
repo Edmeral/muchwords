@@ -30,6 +30,7 @@ app
 
 require('./config/passport')(passport);
 require('./routes/default')(app, passport);
+require('./routes/dashboard')(app);
 // require('./routes/api')(app, passport);
 
 app.listen(port);

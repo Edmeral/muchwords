@@ -1,16 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 	<meta charset="UTF-8">
 	<title>751 words - Dashboard</title>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	
+	<link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/dashboard.css">
 
-	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<a href="/logout">Logout</a>
+	<a href="/logout" class="btn btn-danger btn-lg pull-right">Logout</a>
+	<p>
+		user: <%= user %>
+	</p>
+	<p>
+		posts: <%= posts %>
+	</p>
+	<p>
+		noPosts: <%= noPosts %>
+	</p>
+	<p>
+		noPostToday: <%= noPostToday %>
+	</p>
+	
+	<div class="container">
+		
+
+			<form action="dashboard" method="submit">
+
+			
+			<textarea name="content" id="content" placeholder="Write here" autofocus></textarea>
+
+			<button class="btn btn-success btn-lg pull-right" type="submit">Save</button>
+		
+		</form>
+
+		
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery.autosize.min.js"></script>
+	<script src="js/nanobar.min.js"></script>
+	<script src="js/dashboard.script.js"></script>
 </body>
 </html>

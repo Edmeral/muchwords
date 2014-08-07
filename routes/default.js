@@ -1,5 +1,3 @@
-var Post = require('../models/post');
-
 module.exports = function (app, passport){
 	app
 		.get('/', function(req, res) {
@@ -12,18 +10,6 @@ module.exports = function (app, passport){
 					loginMessage: req.flash('login-message'),
 					logoutMessage: req.flash('logout-message')
 				 });
-		})
-
-		.get('/dashboard', isLoggedIn, function(req, res) {
-
-			Post.find({ 'username': req.username}, function(err, posts) {
-				if (err)
-					res.render('dashboard.ejs', { user: req.user, posts: null });
-
-				else 
-					res.render('dashboard.ejs', { user: req.user, posts: posts });
-			});
-
 		})
 
 		.post('/signup', passport.authenticate('signup', {
@@ -44,9 +30,3 @@ module.exports = function (app, passport){
 		});
 };
 
-function isLoggedIn(req, res, next) {
-	if (req.isAuthenticated())
-		next();
-	else
-		res.redirect('/');
-}
