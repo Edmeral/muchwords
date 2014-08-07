@@ -17,6 +17,7 @@ app
 	.use(cookieParser())
 	.use(bodyParser.urlencoded({ extended: true }))
 	.use(bodyParser.json())
+	.use(express.static(__dirname + '/public'))
 
 	.set('view engine', 'ejs')
 
@@ -27,8 +28,8 @@ app
 	.use(passport.session())
 	.use(flash());
 
-// require('./config/passport')(passport);
-// require('./routes/index')(app, passport);
+require('./config/passport')(passport);
+require('./routes/default')(app, passport);
 // require('./routes/api')(app, passport);
 
 app.listen(port);

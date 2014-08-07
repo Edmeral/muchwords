@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-var postSchema = mongoose.schema({
+var postSchema = mongoose.Schema({
 	username: String,
 	title: String,
 	date: { type: Date, default: Date.now },

@@ -14,7 +14,7 @@ module.exports = function (passport) {
 		});
 	});
 
-	pasport.use('signup', new LocalStratgy({
+	passport.use('signup', new LocalStrategy({
 		usernameField: 'username',
 		passwordField: 'password',
 		passReqToCallback: true
@@ -23,9 +23,10 @@ module.exports = function (passport) {
 	function(req, username, password, done) {
 
 		process.nextTick(function() {
-			user.findOne({ 'username': username }, function(err, user) {
+			User.findOne({ 'username': username }, function(err, user) {
 
-				if(user) return done(err);
+				if (err)
+					return done(err);
 
 				if (user) 
 					return done(null, false, req.flash('signup-message', 'User Already registred'));
@@ -36,9 +37,9 @@ module.exports = function (passport) {
 					newUser.username = username;
 					newUser.password = newUser.generateHash(password);
 
-					User.save(function(err) {
+					newUser.save(function(err) {
 						if (err) throw err;
-						return done(null, user);
+						return done(null, newUser);
 					});
 				}
 			});
@@ -46,7 +47,7 @@ module.exports = function (passport) {
 	}
 	));
 
-	passport.use('login', new LocalStratgy({
+	passport.use('login', new LocalStrategy({
 		usernameField: 'username',
 		passwordField: 'password',
 		passReqToCallback: true
@@ -57,7 +58,7 @@ module.exports = function (passport) {
 			 if (err) return done(err);
 
 			 if (!user) 
-			 	return done(null, false, req.flash('login-message', 'No user with username'));
+			 	return done(null, false, req.flash('login-message', 'No user with that username'));
 
 			 if (!user.validPassword(password))
 			 	return done(null, false, req.flash('login-message', 'Incorrect password!'));

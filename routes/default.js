@@ -1,6 +1,6 @@
 var Post = require('../models/post');
 
-module.export = function (app, passport){
+module.exports = function (app, passport){
 	app
 		.get('/', function(req, res) {
 			if (req.isAuthenticated())
@@ -9,35 +9,37 @@ module.export = function (app, passport){
 			else
 				res.render('index.ejs', {
 					signupMessage: req.flash('signup-message'),
-					loginMessage: req.flash('login-message')
+					loginMessage: req.flash('login-message'),
+					logoutMessage: req.flash('logout-message')
 				 });
 		})
 
 		.get('/dashboard', isLoggedIn, function(req, res) {
 
-			Post.find({ username: req.local.username}, function(err, posts) {
+			Post.find({ 'username': req.username}, function(err, posts) {
 				if (err)
-					res.render('index.ejs', { user: req.user, posts: null });
+					res.render('dashboard.ejs', { user: req.user, posts: null });
 
 				else 
-					res.render('index.ejs', { user: req.user, posts: posts });
+					res.render('dashboard.ejs', { user: req.user, posts: posts });
 			});
 
 		})
 
-		.post('/login', passport.authenticate('login', {
+		.post('/signup', passport.authenticate('signup', {
 			successRedirect: '/dashboard',
-			failureRedirect: '/login',
+			failureRedirect: '/',
 			failureFlash: true
 		}))
-		.post('signup', passport.authenticate('signup', {
+		.post('/login', passport.authenticate('login', {
 			successRedirect: '/dashboard',
-			failureRedirect: '/signup',
+			failureRedirect: '/',
 			failureFlash: true
 		}))
 
 		.get('/logout', function(req, res) {
 			req.logout();
+			req.flash('logout-message', 'You are logged out succefully');
 			res.redirect('/');
 		});
 };
