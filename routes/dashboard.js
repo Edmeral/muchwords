@@ -105,10 +105,10 @@ module.exports = function(app) {
           - For each date we see if there is a post that was written in the same day
           - if there is, get the wordsCount, otherwise set it to 0
         */
-       
+        
         for (var i = 365; i >= 0; i--) {
 
-          var newMoment = thisMoment.subtract(i, 'days');
+          var newMoment = moment().subtract(i, 'days');
           console.log(i, newMoment);
           var item = [newMoment.toDate(), 0];
 
