@@ -7,6 +7,9 @@ form {
 	margin: auto;
 }
 
+#_id {
+	display: none;
+}
 #title, #content {
 	outline: none;
 	border: none;

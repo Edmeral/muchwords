@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="css/dashboard.css">
 
 </head>
+
 <body>
 	<a href="/logout" class="btn btn-danger btn-lg pull-right">Logout</a>
 	<p>
@@ -28,15 +29,21 @@
 		noPostToday: <%= noPostToday %>
 	</p>
 	
+	<% if (content) {
+		if (posts[0].wordsCount >= 751) { %>
+			<div class="alert alert-success">Nice! You've already completed your 751 words for this day, but you can always add more :)</div>
+		<%}
+	}%>
 	<div class="container">
 		
 
-			<form action="dashboard" method="submit">
-
+		<form action="dashboard" method="post">
 			
-			<textarea name="content" id="content" placeholder="Write here" autofocus></textarea>
+			<textarea name="content" id="content" placeholder="Write here"><%= content %></textarea>
 
-			<button class="btn btn-success btn-lg pull-right" type="submit">Save</button>
+			<input type="text" name ="_id" id="_id" value="<% if (content) {%><%= posts[posts.length - 1]._id %><%}%>">
+
+			<button class="btn btn-success btn-lg pull-right" type="submit" id="submit">Save</button>
 		
 		</form>
 
