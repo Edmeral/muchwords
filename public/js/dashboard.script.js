@@ -15,7 +15,7 @@ $('#submit').click(function(e) {
 
   $.post('./dashboard', $('form').serialize(), function() {
     submit.text('Saved!');
-    submit.removeClass('btn-default').addClass('btn-success')
+    submit.removeClass('btn-default').addClass('btn-success');
     setTimeout(function() {
       submit.text('Save');
     }, 2000);
