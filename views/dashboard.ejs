@@ -2,57 +2,57 @@
 <html lang="en">
 <head>
 
-	<meta charset="UTF-8">
-	<title>751 words - Dashboard</title>
+  <meta charset="UTF-8">
+  <title>751 words - Dashboard</title>
 
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-	
-	<link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/dashboard.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/dashboard.css">
 
 </head>
 
 <body>
-	<a href="/logout" class="btn btn-danger btn-lg pull-right">Logout</a>
-	<p>
-		user: <%= user %>
-	</p>
-	<p>
-		posts: <%= posts %>
-	</p>
-	<p>
-		noPosts: <%= noPosts %>
-	</p>
-	<p>
-		noPostToday: <%= noPostToday %>
-	</p>
-	
-	<% if (content) {
-		if (posts[0].wordsCount >= 751) { %>
-			<div class="alert alert-success">Nice! You've already completed your 751 words for this day, but you can always add more :)</div>
-		<%}
-	}%>
-	<div class="container">
-		
+  <a href="/logout" class="btn btn-danger btn-lg pull-right">Logout</a>
+  <p>
+    user: <%= user %>
+  </p>
+  <p>
+    posts: <%= posts %>
+  </p>
+  <p>
+    noPosts: <%= noPosts %>
+  </p>
+  <p>
+    noPostToday: <%= noPostToday %>
+  </p>
+  
+  <% if (content) {
+    if (posts[0].wordsCount >= 751) { %>
+      <div class="alert alert-success">Nice! You've already completed your 751 words for this day, but you can always add more :)</div>
+    <%}
+  }%>
+  <div class="container">
+    
 
-		<form action="dashboard" method="post">
-			
-			<textarea name="content" id="content" placeholder="Write here"><%= content %></textarea>
+    <form action="dashboard" method="post">
+      
+      <textarea name="content" id="content" placeholder="Write here"><%= content %></textarea>
 
-			<input type="text" name ="_id" id="_id" value="<% if (content) {%><%= posts[posts.length - 1]._id %><%}%>">
+      <input type="text" name ="_id" id="_id" value="<% if (content) {%><%= posts[posts.length - 1]._id %><%}%>">
 
-			<button class="btn btn-success btn-lg pull-right" type="submit" id="submit">Save</button>
-		
-		</form>
+      <button class="btn btn-success btn-lg pull-right" type="submit" id="submit">Save</button>
+    
+    </form>
 
-		
-	</div>
+    
+  </div>
 
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery.autosize.min.js"></script>
-	<script src="js/nanobar.min.js"></script>
-	<script src="js/dashboard.script.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery.autosize.min.js"></script>
+  <script src="js/nanobar.min.js"></script>
+  <script src="js/dashboard.script.js"></script>
 </body>
 </html>

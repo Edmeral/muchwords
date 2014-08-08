@@ -13,20 +13,20 @@ var session = require('express-session');
 mongoose.connect(require('./config/db').url);
 
 app
-	.use(morgan('dev'))
-	.use(cookieParser())
-	.use(bodyParser.urlencoded({ extended: true }))
-	.use(bodyParser.json())
-	.use(express.static(__dirname + '/public'))
+  .use(morgan('dev'))
+  .use(cookieParser())
+  .use(bodyParser.urlencoded({ extended: true }))
+  .use(bodyParser.json())
+  .use(express.static(__dirname + '/public'))
 
-	.set('view engine', 'ejs')
+  .set('view engine', 'ejs')
 
-	.use(session({ secret: 'topsecret', 
-								 saveUninitialized: true,
+  .use(session({ secret: 'topsecret', 
+                 saveUninitialized: true,
                  resave: true }))
-	.use(passport.initialize())
-	.use(passport.session())
-	.use(flash());
+  .use(passport.initialize())
+  .use(passport.session())
+  .use(flash());
 
 require('./config/passport')(passport);
 require('./routes/default')(app, passport);

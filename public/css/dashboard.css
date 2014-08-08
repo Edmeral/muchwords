@@ -1,41 +1,41 @@
 body {
-	padding: 50px;
+  padding: 50px;
 }
 
 form {
-	width: 70%;
-	margin: auto;
+  width: 70%;
+  margin: auto;
 }
 
 #_id {
-	display: none;
+  display: none;
 }
 #title, #content {
-	outline: none;
-	border: none;
-	background: none;
-	font-family: 'Montserrat', Arial, Sans;
-	font-size: 50px;
-	line-height: 55px;
-	color: #333332;
-	overflow: hidden;
-	word-wrap: break-word;
-	resize: none;
-	display: block;
-	height: 55px;
-	width: 100%;
+  outline: none;
+  border: none;
+  background: none;
+  font-family: 'Montserrat', Arial, Sans;
+  font-size: 50px;
+  line-height: 55px;
+  color: #333332;
+  overflow: hidden;
+  word-wrap: break-word;
+  resize: none;
+  display: block;
+  height: 55px;
+  width: 100%;
 }
 
 #title {
-	letter-spacing: -4px;
+  letter-spacing: -4px;
 }
 
 #content{
-	font-family: 'Montserrat', Sans-Serif;
-	margin-top: 30px;
-	margin-bottom: 60px;
-	min-height: 300px;
-	font-size: 20px;
-	line-height: 31px;
-	height: 33px;
+  font-family: 'Montserrat', Sans-Serif;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  min-height: 300px;
+  font-size: 20px;
+  line-height: 31px;
+  height: 33px;
 }
