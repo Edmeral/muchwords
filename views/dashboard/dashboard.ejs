@@ -9,13 +9,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
   <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/dashboard.css">
 
 </head>
 
 <body>
-  <a href="/logout" class="btn btn-danger btn-lg pull-right">Logout</a>
+  
+  <header>
+    <a id="header-dashboard" class="active" href="/dashboard">Dashboard</a>
+    <!-- <div id="header-hello"><span class="hello">Hello</span> <%= user.username %>.</div> -->
+    <div id="header-navigation">
+      <a class="archives" href="#">Archives</a>
+      <a class="settings" href="#">Settings</a>
+      <a class="logout" href="/logout">Log out</a>
+    </div>
+
+  </header>
+  
+  <br> <br> <br> <br>
+  
   <p>
     user: <%= user %>
   </p>

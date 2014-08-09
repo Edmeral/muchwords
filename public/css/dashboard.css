@@ -1,6 +1,4 @@
-body {
-  padding: 50px;
-}
+
 
 form {
   width: 70%;
@@ -44,4 +42,70 @@ form {
 .view-container {
   width: 70%;
   margin: auto;
+}
+/* For header styles */
+
+header {
+  position: relative;
+  width: 70%;
+  margin: auto;
+  min-width: 750px;
+  font-size: 23px;
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 3px 2.3px -3px rgba(200,200,200,0.3);
+
+}
+
+header > * {
+  display: inline-block;
+  line-height: 60px; 
+
+}
+
+#header-dashboard {
+  position: relative;
+  font-family: 'Montserrat', Helvetica, Arial, Sans;
+  height: 59px;
+  letter-spacing: -1.5px;
+}
+
+#header-navigation {
+  position:absolute;
+  top: 0;
+  right: 0;
+}
+#header-navigation > * {
+  display: inline-block;
+  font-family: 'Montserrat', Helvetica, Arial, Sans;
+  line-height: 60px;
+  height: 59px;
+  letter-spacing: -1.5px;
+  margin-left: 50px;
+  color: inherit;
+
+}
+
+#header-hello {
+  font-family: 'Open Sans Condensed', Helvetica, Arial, Sans;
+  font-size: 30px;
+}
+
+.hello {
+  color: #d35400;
+  font-weight: 700;
+}
+
+header .active, .settings:hover, .archives:hover{
+   border-bottom: 4px solid #d35400;
+   text-decoration: none;
+   color: inherit;
+}
+
+
+
+.logout:hover {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 4px solid #c0392b;
 }
