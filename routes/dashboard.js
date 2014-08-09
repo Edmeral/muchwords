@@ -109,16 +109,16 @@ module.exports = function(app) {
         for (var i = 365; i >= 0; i--) {
 
           var newMoment = moment().subtract(i, 'days');
-          console.log(i, newMoment);
-          var item = [newMoment.format('YYYY-MM-DD'), 0];
+          var item = [newMoment.format('YYYY-MM-DD'), 0, ''];
 
           for (var j = 0, l = posts.length; j < l; j++) {
 
             var date = moment(posts[j].date);
             var wordsCount = posts[j].wordsCount;
+            var id = posts[j]._id;
 
             if (isSameDay(date, newMoment))
-              item = [date.format('YYYY-MM-DD'), wordsCount];
+              item = [date.format('YYYY-MM-DD'), wordsCount, id];
 
           }
           calendar.push(item);
