@@ -110,15 +110,15 @@ module.exports = function(app) {
 
           var newMoment = moment().subtract(i, 'days');
           console.log(i, newMoment);
-          var item = [newMoment.toDate(), 0];
+          var item = [newMoment.format('YYYY-MM-DD'), 0];
 
           for (var j = 0, l = posts.length; j < l; j++) {
 
-            var date = posts[j].date;
+            var date = moment(posts[j].date);
             var wordsCount = posts[j].wordsCount;
 
-            if (isSameDay(moment(date), newMoment))
-              item = [date, wordsCount];
+            if (isSameDay(date, newMoment))
+              item = [date.format('YYYY-MM-DD'), wordsCount];
 
           }
           calendar.push(item);

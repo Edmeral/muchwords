@@ -21,7 +21,7 @@ app
 
   .set('view engine', 'ejs')
 
-  .use(session({ secret: 'topsecret', 
+  .use(session({ secret: process.env.SESSION_SECRET || 'topsecret', 
                  saveUninitialized: true,
                  resave: true }))
   .use(passport.initialize())

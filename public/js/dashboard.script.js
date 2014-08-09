@@ -13,7 +13,7 @@ $('#submit').click(function(e) {
 
   submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
 
-  $.post('./dashboard', $('form').serialize(), function() {
+  $.post('/dashboard', $('form').serialize(), function() {
     submit.text('Saved!');
     submit.removeClass('btn-default').addClass('btn-success');
     setTimeout(function() {
