@@ -100,10 +100,11 @@ module.exports = function(app) {
         if (err) console.log(err);
         var calendar = [];
 
-        /* -Begin from this moment minus 366 days.
+        /* -Begin from this moment minus 365 days.
           - a loop that iterates until this moment
           - For each date we see if there is a post that was written in the same day
           - if there is, get the wordsCount, otherwise set it to 0
+          - Get also the id of the post
         */
         
         for (var i = 365; i >= 0; i--) {
@@ -127,6 +128,19 @@ module.exports = function(app) {
         res.json(calendar);
     });
 
+  })
+  
+  // For displaying an individual post
+  .get('/dashboard/view/:id', isLoggedIn, function(req, res) {
+    Post.find({'_id': req.params.id, 'username': req.user.username}, function(err, post) {
+
+      if(err) console.log(err);
+
+      if (post)
+        res.render('view.ejs', { post: post[0] });
+      else 
+        res.redirect('/');
+    });
   });
 };
 

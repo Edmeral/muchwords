@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>751 words - View a post</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+
+<body>
+  <div class="view-container">
+    <p id="content">
+      <% if (post) { %>
+
+      
+      <%= post.content %>
+   <% }%>
+  </p>
+
+  </div>
+  
+  
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/dashboard.script.js"></script>
+</body>
+</html>

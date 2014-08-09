@@ -10,6 +10,7 @@ form {
 #_id {
   display: none;
 }
+
 #title, #content {
   outline: none;
   border: none;
@@ -38,4 +39,9 @@ form {
   font-size: 20px;
   line-height: 31px;
   height: 33px;
+}
+
+.view-container {
+  width: 70%;
+  margin: auto;
 }
