@@ -7,7 +7,7 @@ module.exports = function(app) {
 
         Post.find({ 'username': req.user.username}, function(err, posts) {
           if (err)
-            res.render('dashboard.ejs', { user: req.user, posts: null });
+            res.render('dashboard/dashboard.ejs', { user: req.user, posts: null });
 
           else {
             
@@ -30,7 +30,7 @@ module.exports = function(app) {
             if(!noPostToday) 
               content = posts[length - 1].content;
             
-            res.render('dashboard.ejs', { 
+            res.render('dashboard/dashboard.ejs', { 
               user: req.user, 
               posts: posts,
               noPosts: noPosts,
@@ -137,7 +137,7 @@ module.exports = function(app) {
       if(err) console.log(err);
 
       if (post)
-        res.render('view.ejs', { post: post[0] });
+        res.render('dashboard/view.ejs', { post: post[0] });
       else 
         res.redirect('/');
     });
