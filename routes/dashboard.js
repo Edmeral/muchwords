@@ -10,7 +10,11 @@ module.exports = function(app) {
             res.render('dashboard/dashboard.ejs', { user: req.user, posts: null });
 
           else {
-            
+            var totalWords = 0;
+            for (var i = 0, l = posts.length; i < l; i++) {
+              totalWords += posts[i].wordsCount;
+            }
+
             var noPosts = false; 
             var noPostToday = false;
 
@@ -35,6 +39,7 @@ module.exports = function(app) {
               posts: posts,
               noPosts: noPosts,
               noPostToday: noPostToday,
+              totalWords: totalWords,
               content: content
             });
           }

@@ -1,7 +1,8 @@
-
-
+body {
+  color: 2B2B2B;
+}
 form {
-  width: 70%;
+  width: 58%;
   margin: auto;
 }
 
@@ -14,7 +15,7 @@ form {
   border: none;
   background: none;
   font-family: 'Montserrat', Arial, Sans;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 55px;
   color: #333332;
   overflow: hidden;
@@ -30,11 +31,11 @@ form {
 }
 
 #content{
-  font-family: 'Montserrat', Sans-Serif;
+  font-family: 'Merriweather', Sans-Serif;
   margin-top: 30px;
   margin-bottom: 60px;
   min-height: 300px;
-  font-size: 20px;
+  font-size: 17px;
   line-height: 31px;
   height: 33px;
 }
@@ -53,8 +54,7 @@ header {
   font-size: 23px;
   height: 60px;
   border-bottom: 1px solid #ddd;
-  box-shadow: 0 3px 2.3px -3px rgba(200,200,200,0.3);
-
+  box-shadow: -0.5px 3px 2px -2px rgba(200,200,200,0.3);
 }
 
 header > * {
@@ -97,7 +97,7 @@ header > * {
 }
 
 header .active, .settings:hover, .archives:hover{
-   border-bottom: 4px solid #d35400;
+   border-bottom: 4px solid #E9662C;
    text-decoration: none;
    color: inherit;
 }

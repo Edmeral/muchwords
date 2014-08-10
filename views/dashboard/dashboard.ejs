@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather:400' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
@@ -28,11 +28,36 @@
       <a class="settings" href="#">Settings</a>
       <a class="logout" href="/logout">Log out</a>
     </div>
-
   </header>
   
   <br> <br> <br> <br>
   
+
+  <div class="account-summary">
+    <h3>Hello <%= user.username %>.</h3>
+    <% if (noPosts) { %>
+      <!-- Display a welcome message when nothing was written ever -->
+    <% }
+      else { %>
+        <p> You have written <%= totalWords %> 
+            <% if (totalWords > 1) { %>words<% } else { %>word<% } %>
+            in the span of <%= posts.length %>
+            <% if (posts.length > 1) { %>days<% } else { %>day<% } %>.
+
+            <% if (noPostToday) { %> 
+                You haven't wrote anything for today!
+             <% } 
+
+              else { %>
+                You have written <%= posts[posts.length - 1].wordsCount %>/750 words today.
+              <% } %> 
+   
+        </p>
+      <% } %>
+     
+  </div>
+
+
   <p>
     user: <%= user %>
   </p>
@@ -46,8 +71,14 @@
     noPostToday: <%= noPostToday %>
   </p>
   
+
+
+
+  
+
+
   <% if (content) {
-    if (posts[0].wordsCount >= 751) { %>
+    if (posts[posts.length -1 ].wordsCount >= 751) { %>
       <div class="alert alert-success">Nice! You've already completed your 751 words for this day, but you can always add more :)</div>
     <%}
   }%>
