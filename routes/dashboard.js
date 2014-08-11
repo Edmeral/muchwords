@@ -5,7 +5,9 @@ module.exports = function(app) {
   app
     .get('/dashboard', isLoggedIn, function(req, res) {
 
-        Post.find({ 'username': req.user.username}, function(err, posts) {
+        Post.find({ 'username': req.user.username})
+          .sort({ date: 1 })
+          .exec(function(err, posts) {
           if (err)
             res.render('dashboard/dashboard.ejs', { user: req.user, posts: null });
 
