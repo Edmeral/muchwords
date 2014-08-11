@@ -9,8 +9,10 @@ var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
-mongoose.connect(require('./config/db').url);
+var DBUrl = require('./config/db').url; 
+mongoose.connect(DBUrl);
 
 app
   .use(morgan('dev'))
@@ -23,7 +25,11 @@ app
 
   .use(session({ secret: process.env.SESSION_SECRET || 'topsecret', 
                  saveUninitialized: true,
-                 resave: true }))
+                 resave: true,
+                 store: new MongoStore({
+                  url: DBUrl
+                 })
+                }))
   .use(passport.initialize())
   .use(passport.session())
   .use(flash());
