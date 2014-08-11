@@ -62,6 +62,7 @@ header {
 header > * {
   display: inline-block;
   line-height: 50px; 
+  text-transform: uppercase;
 }
 
 #header-dashboard {
