@@ -3,6 +3,9 @@ content.autosize();
 $('#title').autosize();
 
 
+content.one('keyup', function() {
+  $('body').scrollTo('#content', { duration: 'slow' });
+});
 /**
  *  Manging the state of the progress bar on top
 */
