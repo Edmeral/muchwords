@@ -1,6 +1,7 @@
 body {
-  color: 2B2B2B;
+  color: #2B2B2B;
 }
+
 form {
   width: 58%;
   margin: auto;
@@ -68,12 +69,7 @@ header > * {
   font-family: 'Montserrat', Helvetica, Arial, Sans;
   height: 49px;
   letter-spacing: -1.5px;
-}
-
-#header-navigation {
-  position:absolute;
-  top: 0;
-  right: 0;
+  transition: border-bottom 0.2s ease;
 }
 
 #header-navigation > * {
@@ -83,22 +79,32 @@ header > * {
   height: 49px;
   letter-spacing: -1.5px;
   margin-left: 50px;
-
+  transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
-.archives, .settings, .logout {
-  color: #666666;;
+#header-navigation {
+  position:absolute;
+  top: 0;
+  right: 0;
 }
-.active:hover, .settings:hover, .archives:hover, .logout:hover{
+#header-dashboard, .archives, .settings, .logout {
+  color: #666666;
+  border-bottom: 0px solid #E9662C;
+}
+
+#header-dashboard:hover, .active:hover, .settings:hover, .archives:hover, .logout:hover{
    border-bottom: 4px solid #E9662C;
    color: #333333;
    text-decoration: none;
 }
 
-.active {
-  border-bottom: 4px solid #E9662C;
-  color: #333333;
-}
+
 .logout:hover {
   border-bottom: 4px solid #c0392b;
+}
+
+.active {
+  border-bottom: 4px solid #E9662C !important;
+  color: #333333 !important;
+  transition: border-bottom 0s ease !important;
 }
