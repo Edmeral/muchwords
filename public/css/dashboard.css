@@ -146,7 +146,8 @@ header > * {
 
 /* Spinner Animation */
 .spinner {
-  margin: 100px auto 0;
+  margin: auto;
+  margin-top: 40px;
   text-align: center;
 }
 
