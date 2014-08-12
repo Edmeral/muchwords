@@ -16,7 +16,7 @@ form {
   outline: none;
   border: none;
   background: none;
-  font-family: 'Montserrat', Arial, Sans;
+  font-family: 'Montserrat', Helvetica, Arial, Sans-Serif;
   font-size: 40px;
   line-height: 55px;
   color: #333332;
@@ -109,4 +109,82 @@ header > * {
   border-bottom: 4px solid #E9662C !important;
   color: #333333 !important;
   transition: border-bottom 0s ease !important;
+}
+
+/* Calendar styles */
+.quartile {
+  width: 12px;
+  height: 13px;
+  margin: 1px;
+  display: inline-block;
+}
+
+.quartile:hover {
+  border: 1px solid #666666;
+}
+
+.q0 {
+  background-color: #EEEEEE;
+}
+.q1 {
+  background-color: #D6E685;
+}
+.q2 {
+  background-color: #8CC665;
+}
+.q3 {
+  background-color: #44a340;
+}
+.q4 {
+  background-color: #1E6823;
+}
+
+#calendar {
+  width: 70%;
+  margin: auto;
+}
+
+/* Spinner Animation */
+.spinner {
+  margin: 100px auto 0;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 18px;
+  height: 18px;
+  background-color: #EEEEEE;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+  animation: bouncedelay 1.4s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }

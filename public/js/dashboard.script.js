@@ -49,9 +49,42 @@ $('#submit').click(function(e) {
  *  Drawing the words calendar
 */
 
-$.getJSON('/dashboard/calendar', function(data) {
+$.getJSON('/dashboard/calendar', function(posts) {
+  console.log(posts);
+  // Get the max number of words
+  var max = 0;
+  for (var i in posts) {
+    if (posts[i][1] > max)
+      max = posts[i][1];
+  }
 
+  var d1 = max / 4;
+  var d2 = max / 2;
+  var d3 = max - d1;
 
+  $('.spinner').hide();
 
+  for (var j in posts) {
+    var quartile = document.createElement('a');
+    var wordsCount = posts[j][1];
+    var link = posts[j][2];
+    var cssClass;
+    $(quartile).attr('title', '<strong>' + wordsCount + ' words</strong> on ' + posts[j][0]);
+    if (link) $(quartile).attr('href', '/dashboard/view/' + link);
+
+    if (wordsCount === 0) cssClass = 'q0';
+    else if (wordsCount < d1) cssClass = 'q1';
+    else if (wordsCount >= d1 && wordsCount < d2) cssClass = 'q2';
+    else if (wordsCount >= d2 && wordsCount < d3) cssClass = 'q3';
+    else if (wordsCount >= d3) cssClass = 'q4';
+
+    $(quartile).addClass('quartile ' + cssClass);
+    $(quartile).tipsy({
+      gravity: 's',
+      opacity: 0.65,
+      html: true
+    });
+    $('#calendar').append(quartile);
+  }
 });
 

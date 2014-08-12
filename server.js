@@ -11,7 +11,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
-var DBUrl = require('./config/db').url; 
+var DBUrl = require('./config/db').url;
 mongoose.connect(DBUrl);
 
 app
@@ -23,7 +23,7 @@ app
 
   .set('view engine', 'ejs')
 
-  .use(session({ secret: process.env.SESSION_SECRET || 'topsecret', 
+  .use(session({ secret: process.env.SESSION_SECRET || 'topsecret',
                  saveUninitialized: true,
                  resave: true,
                  store: new MongoStore({
@@ -37,7 +37,6 @@ app
 require('./config/passport')(passport);
 require('./routes/default')(app, passport);
 require('./routes/dashboard')(app);
-// require('./routes/api')(app, passport);
 
 app.listen(port);
 console.log('Head out to http://localhost:' + port);

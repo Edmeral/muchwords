@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
   <link rel="stylesheet" href="/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/tipsy.css">
 
 </head>
 
@@ -32,7 +33,16 @@
   
   <br> <br> <br> <br>
   
+    <div id="calendar">
+      <h4>Activity in the last 6 months</h4>
+      <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+      </div>
+    </div>
 
+ <br> <br> <br> <br>
   <div class="account-summary">
     <h3>Hello <%= user.username %>.</h3>
     <% if (noPosts) { %>
@@ -95,11 +105,13 @@
 
     
   </div>
+  
 
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery.autosize.min.js"></script>
   <script src="/js/jquery.scrollTo-min.js"></script>
   <script src="/js/nanobar.min.js"></script>
   <script src="/js/dashboard.script.js"></script>
+  <script src="/js/jquery.tipsy.js"></script>
 </body>
 </html>
