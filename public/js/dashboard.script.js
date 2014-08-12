@@ -64,12 +64,17 @@ $.getJSON('/dashboard/calendar', function(posts) {
 
   $('.spinner').hide();
 
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   for (var j in posts) {
     var quartile = document.createElement('a');
     var wordsCount = posts[j][1];
     var link = posts[j][2];
+    var date = new Date(posts[j][0]);
+    var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     var cssClass;
-    $(quartile).attr('title', '<strong>' + wordsCount + ' words</strong> on ' + posts[j][0]);
+
+
+    $(quartile).attr('title', '<strong>' + wordsCount + ' words</strong> on ' + dateStr);
     if (link) $(quartile).attr('href', '/dashboard/view/' + link);
 
     if (wordsCount === 0) cssClass = 'q0';
@@ -79,11 +84,13 @@ $.getJSON('/dashboard/calendar', function(posts) {
     else if (wordsCount >= d3) cssClass = 'q4';
 
     $(quartile).addClass('quartile ' + cssClass);
+
     $(quartile).tipsy({
       gravity: 's',
       opacity: 0.65,
       html: true
     });
+
     $('#calendar').append(quartile);
   }
 });
