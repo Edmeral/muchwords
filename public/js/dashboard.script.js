@@ -72,9 +72,14 @@ $.getJSON('/dashboard/calendar', function(posts) {
     var date = new Date(posts[j][0]);
     var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
     var cssClass;
+    var words = 'words';
 
+    if (wordsCount == 1) words = 'word';
+    var title = '<strong>' + wordsCount + ' ' + words + '</strong> on ' + dateStr;
+    if (wordsCount === 0) 
+      title = '<strong>No words</strong> on ' + dateStr;
 
-    $(quartile).attr('title', '<strong>' + wordsCount + ' words</strong> on ' + dateStr);
+    $(quartile).attr('title', title);
     if (link) $(quartile).attr('href', '/dashboard/view/' + link);
 
     if (wordsCount === 0) cssClass = 'q0';
