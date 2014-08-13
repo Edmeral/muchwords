@@ -98,7 +98,24 @@ $(function() {
         html: true
       });
 
-      $('#calendar').append(quartile);
+      $('#calendar-grid').append(quartile);
     }
+
+    // Geting the longest and current streaks + total days of writing.   
+    var streaks = [];
+    var tmpStreak = 0;
+    for (i = posts.length - 1; i >= 0; i--) {
+      if (posts[i][1]) tmpStreak++;
+      else {
+        streaks.push(tmpStreak);
+        tmpStreak = 0;
+      }
+    }
+    var currentStreak = streaks[0];
+    // If the user hasn't written anything today, the current strak
+    // shoudln't be equall to 0 instead it shoudl equal the the previous streak
+    if (posts[posts.length - 1][1] === 0) currentStreak = streaks[1];
+    var longestStrak = Math.max.apply(Math, streaks);
+    console.log(currentStreak, longestStrak, daysNumber);
   });
 });

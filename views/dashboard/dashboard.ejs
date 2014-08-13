@@ -32,19 +32,26 @@
   </header>
   
   <br> <br> <br> <br>
-  
+    
     <div id="calendar">
       <h4>Activity in the last 6 months</h4>
-      <div class="spinner">
-        <div class="bounce1"></div>
-        <div class="bounce2"></div>
-        <div class="bounce3"></div>
-      </div>
+      <div id="calendar-grid">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
     </div>
+      <h5 class="current-streak"></h5>
+      <h5 class="longest-streak"></h5>
+      <h5 class="number-days"></h5>
+    </div>
+   
 
  <br> <br> <br> <br>
   <div class="account-summary">
     <h3>Hello <%= user.username %>.</h3>
+   
     <% if (noPosts) { %>
       <!-- Display a welcome message when nothing was written ever -->
     <% }
@@ -106,7 +113,10 @@
     
   </div>
   
-
+   <!-- Injecting the Number of days the user has written in to use in frontend JS -->
+    <script>
+      var daysNumber = <%= posts.length %>;
+    </script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/jquery.autosize.min.js"></script>
   <script src="/js/jquery.scrollTo-min.js"></script>
