@@ -115,7 +115,9 @@ $(function() {
     // If the user hasn't written anything today, the current strak
     // shoudln't be equall to 0 instead it shoudl equal the the previous streak
     if (posts[posts.length - 1][1] === 0) currentStreak = streaks[1];
-    var longestStrak = Math.max.apply(Math, streaks);
-    console.log(currentStreak, longestStrak, daysNumber);
+    var longestStreak = Math.max.apply(Math, streaks);
+    $('.current-streak').text('Current streak: ' + currentStreak + ' days.');
+    $('.longest-streak').text('Longest streak: ' + longestStreak + ' days.');
+    $('.total-words').text('Total words written: ' + totalWords + '.');
   });
 });
