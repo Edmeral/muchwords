@@ -1,3 +1,10 @@
+.preload * {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
+
 body {
   color: #2B2B2B;
 }
@@ -71,7 +78,7 @@ header > * {
   font-family: 'Montserrat', Helvetica, Arial, Sans;
   height: 49px;
   letter-spacing: -1.5px;
-  transition: border-bottom 0.2s ease;
+  transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
 #header-navigation > * {

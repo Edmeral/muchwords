@@ -1,102 +1,104 @@
-var content = $('#content');
-content.autosize();
-$('#title').autosize();
+$(function() {
+
+  $('body').removeClass('preload');
+  var content = $('#content');
+  content.autosize();
+  $('#title').autosize();
 
 
-content.one('keyup', function() {
-  $('body').scrollTo('#content', { duration: 'slow' });
-});
-/**
- *  Manging the state of the progress bar on top
-*/
-var progressBar = new Nanobar({
-  bg: '#068894',
-  id: 'progressbar'
-});
-
-var text = content.val();
-var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
-if (text === '') length = 0;
-progressBar.go((length / 751) * 100);
-
-content.keyup(function() {
-  text = content.val();
-  length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
-  if (text === '') length = 0;
-  progressBar.go((length / 751) * 100);
-});
-
-/**
- *  Saving the post without refreshing the page
-*/
-var submit = $('#submit');
-$('#submit').click(function(e) {
-  e.preventDefault();
-
-  submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
-
-  $.post('/dashboard', $('form').serialize(), function() {
-    submit.text('Saved!');
-    submit.removeClass('btn-default').addClass('btn-success');
-    setTimeout(function() {
-      submit.text('Save');
-    }, 2000);
+  content.one('keyup', function() {
+    $('body').scrollTo('#content', { duration: 'slow' });
+  });
+  /**
+   *  Manging the state of the progress bar on top
+  */
+  var progressBar = new Nanobar({
+    bg: '#068894',
+    id: 'progressbar'
   });
 
-});
+  var text = content.val();
+  var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
+  if (text === '') length = 0;
+  progressBar.go((length / 751) * 100);
 
-/**
- *  Drawing the words calendar
-*/
+  content.keyup(function() {
+    text = content.val();
+    length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
+    if (text === '') length = 0;
+    progressBar.go((length / 751) * 100);
+  });
 
-$.getJSON('/dashboard/calendar', function(posts) {
-  console.log(posts);
-  // Get the max number of words
-  var max = 0;
-  for (var i in posts) {
-    if (posts[i][1] > max)
-      max = posts[i][1];
-  }
+  /**
+   *  Saving the post without refreshing the page
+  */
+  var submit = $('#submit');
+  $('#submit').click(function(e) {
+    e.preventDefault();
 
-  var d1 = max / 4;
-  var d2 = max / 2;
-  var d3 = max - d1;
+    submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
 
-  $('.spinner').hide();
-
-  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  for (var j in posts) {
-    var quartile = document.createElement('a');
-    var wordsCount = posts[j][1];
-    var link = posts[j][2];
-    var date = new Date(posts[j][0]);
-    var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-    var cssClass;
-    var words = 'words';
-
-    if (wordsCount == 1) words = 'word';
-    var title = '<strong>' + wordsCount + ' ' + words + '</strong> on ' + dateStr;
-    if (wordsCount === 0) 
-      title = '<strong>No words</strong> on ' + dateStr;
-
-    $(quartile).attr('title', title);
-    if (link) $(quartile).attr('href', '/dashboard/view/' + link);
-
-    if (wordsCount === 0) cssClass = 'q0';
-    else if (wordsCount < d1) cssClass = 'q1';
-    else if (wordsCount >= d1 && wordsCount < d2) cssClass = 'q2';
-    else if (wordsCount >= d2 && wordsCount < d3) cssClass = 'q3';
-    else if (wordsCount >= d3) cssClass = 'q4';
-
-    $(quartile).addClass('quartile ' + cssClass);
-
-    $(quartile).tipsy({
-      gravity: 's',
-      opacity: 0.65,
-      html: true
+    $.post('/dashboard', $('form').serialize(), function() {
+      submit.text('Saved!');
+      submit.removeClass('btn-default').addClass('btn-success');
+      setTimeout(function() {
+        submit.text('Save');
+      }, 2000);
     });
 
-    $('#calendar').append(quartile);
-  }
-});
+  });
 
+  /**
+   *  Drawing the words calendar
+  */
+
+  $.getJSON('/dashboard/calendar', function(posts) {
+    // Get the max number of words
+    var max = 0;
+    for (var i in posts) {
+      if (posts[i][1] > max)
+        max = posts[i][1];
+    }
+
+    var d1 = max / 4;
+    var d2 = max / 2;
+    var d3 = max - d1;
+
+    $('.spinner').hide();
+
+    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    for (var j in posts) {
+      var quartile = document.createElement('a');
+      var wordsCount = posts[j][1];
+      var link = posts[j][2];
+      var date = new Date(posts[j][0]);
+      var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+      var cssClass;
+      var words = 'words';
+
+      if (wordsCount == 1) words = 'word';
+      var title = '<strong>' + wordsCount + ' ' + words + '</strong> on ' + dateStr;
+      if (wordsCount === 0) 
+        title = '<strong>No words</strong> on ' + dateStr;
+
+      $(quartile).attr('title', title);
+      if (link) $(quartile).attr('href', '/dashboard/view/' + link);
+
+      if (wordsCount === 0) cssClass = 'q0';
+      else if (wordsCount < d1) cssClass = 'q1';
+      else if (wordsCount >= d1 && wordsCount < d2) cssClass = 'q2';
+      else if (wordsCount >= d2 && wordsCount < d3) cssClass = 'q3';
+      else if (wordsCount >= d3) cssClass = 'q4';
+
+      $(quartile).addClass('quartile ' + cssClass);
+
+      $(quartile).tipsy({
+        gravity: 's',
+        opacity: 0.65,
+        html: true
+      });
+
+      $('#calendar').append(quartile);
+    }
+  });
+});
