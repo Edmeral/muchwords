@@ -1,5 +1,16 @@
 $(function() {
 
+  function savePost() {
+    submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
+
+    $.post('/dashboard', $('form').serialize(), function() {
+      submit.text('Saved!');
+      submit.removeClass('btn-default').addClass('btn-success');
+      setTimeout(function() {
+        submit.text('Save');
+      }, 2000);
+    });
+  }
   $('body').removeClass('preload');
   var content = $('#content');
   content.autosize();
@@ -7,7 +18,9 @@ $(function() {
 
 
   content.one('keyup', function() {
-    $('body').scrollTo('#content', { duration: 'slow' });
+    $('body').scrollTo('#content', { duration: 'slow', offset: -50 });
+    
+    
   });
   /**
    *  Manging the state of the progress bar on top
@@ -19,6 +32,7 @@ $(function() {
 
   var text = content.val();
   var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
+  var previousLength = length;
   if (text === '') length = 0;
   progressBar.go((length / 751) * 100);
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
@@ -29,6 +43,7 @@ $(function() {
     if (text === '') length = 0;
     progressBar.go((length / 751) * 100);
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
+    savePost(); 
   });
 
   /**
@@ -37,17 +52,7 @@ $(function() {
   var submit = $('#submit');
   $('#submit').click(function(e) {
     e.preventDefault();
-
-    submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
-
-    $.post('/dashboard', $('form').serialize(), function() {
-      submit.text('Saved!');
-      submit.removeClass('btn-default').addClass('btn-success');
-      setTimeout(function() {
-        submit.text('Save');
-      }, 2000);
-    });
-
+    savePost();
   });
 
   /**
