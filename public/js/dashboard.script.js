@@ -21,12 +21,14 @@ $(function() {
   var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
   if (text === '') length = 0;
   progressBar.go((length / 751) * 100);
+  $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
   content.keyup(function() {
     text = content.val();
     length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
     progressBar.go((length / 751) * 100);
+    $('form p').text(length + (length == 1 ? ' word':' words') + '.');
   });
 
   /**
@@ -116,8 +118,8 @@ $(function() {
     // shoudln't be equall to 0 instead it shoudl equal the the previous streak
     if (posts[posts.length - 1][1] === 0) currentStreak = streaks[1];
     var longestStreak = Math.max.apply(Math, streaks);
-    $('.current-streak').text('Current streak: ' + currentStreak + ' days.');
-    $('.longest-streak').text('Longest streak: ' + longestStreak + ' days.');
+    $('.current-streak').text('Current streak: ' + currentStreak + (currentStreak == 1 ? ' day.':' days.'));
+    $('.longest-streak').text('Longest streak: ' + longestStreak + (longestStreak == 1 ? ' day.':' days.'));
     $('.total-words').text('Total words written: ' + totalWords + '.');
   });
 });

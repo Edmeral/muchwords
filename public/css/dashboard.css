@@ -1,3 +1,6 @@
+form p {
+  font-family: 'Montserrat'
+}
 .preload * {
   -webkit-transition: none !important;
   -moz-transition: none !important;
