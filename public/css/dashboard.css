@@ -80,7 +80,9 @@ header > * {
   position: relative;
   font-family: 'Montserrat', Helvetica, Arial, Sans;
   height: 49px;
+  background-image: url(/images/logo.png);
   letter-spacing: -1.5px;
+  width: 200px;
   transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
@@ -104,7 +106,7 @@ header > * {
   border-bottom: 0px solid #E9662C;
 }
 
-#header-dashboard:hover, .active:hover, .settings:hover, .archives:hover, .logout:hover{
+.active:hover, .settings:hover, .archives:hover, .logout:hover{
    border-bottom: 4px solid #E9662C;
    color: #333333;
    text-decoration: none;
