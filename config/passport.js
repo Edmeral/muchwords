@@ -2,6 +2,8 @@ var LocalStrategy = require('passport-local');
 
 var User = require('../models/user');
 
+var time = require('time');
+
 module.exports = function (passport) {
 
   passport.serializeUser(function(user, done) {
@@ -36,6 +38,7 @@ module.exports = function (passport) {
 
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
+          newUser.timezone = req.body.timezone;
 
           newUser.save(function(err) {
             if (err) throw err;
