@@ -1,5 +1,6 @@
 var Post = require('../models/post');
 var moment = require('moment');
+var time = require('time');
 
 module.exports = function(app) {
   app
@@ -28,7 +29,12 @@ module.exports = function(app) {
             else {
               // if the latest post date field and today's date are not equal
               // then the user hasn't yet written anything today
-              if (!moment(posts[length - 1].date).isSame(moment(), 'day'))  
+              var lastPostDate = new time.Date(posts[length - 1].date.toString());
+              var now = new time.Date();
+              now.setTimezone(req.user.timezone);
+              lastPostDate.setTimezone(req.user.timezone);
+
+              if (!(isSameDay(moment(now), moment(lastPostDate))))  
                 noPostToday = true;                             
             } 
 
