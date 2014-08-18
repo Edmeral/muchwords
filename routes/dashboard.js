@@ -149,8 +149,10 @@ module.exports = function(app) {
 
       if(err) console.log(err);
 
-      if (post)
-        res.render('dashboard/view.ejs', { post: post[0] });
+      if (post) {
+        var content = post[0].content.replace(/\n/g, "<br />");
+        res.render('dashboard/view.ejs', { post: content});
+      }
       else 
         res.redirect('/');
     });

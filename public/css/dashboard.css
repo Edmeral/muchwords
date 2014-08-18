@@ -18,8 +18,13 @@ form {
   margin-bottom: 30%;
 }
 
-#_id {
-  display: none;
+#view {
+  width: 90%;
+  margin: auto;
+  font-family: 'Merriweather', Serif;
+  line-height: 31px;
+  margin-top: 50px;
+  font-size: 17px;
 }
 
 #title, #content {
