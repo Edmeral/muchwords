@@ -11,6 +11,9 @@ $(function() {
       }, 2000);
     });
   }
+
+  $(".dial").knob();
+
   $('body').removeClass('preload');
   var content = $('#content');
   content.autosize();
@@ -35,6 +38,7 @@ $(function() {
   var previousLength = length;
   if (text === '') length = 0;
   progressBar.go((length / 751) * 100);
+  $('.dial').val((length / 751) * 100);
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
   content.keyup(function() {
