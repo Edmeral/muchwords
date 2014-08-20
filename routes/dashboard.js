@@ -14,8 +14,13 @@ module.exports = function(app) {
 
           else {
             var totalWords = 0;
+            var activeDays = 0;
+
             for (var i = 0, l = posts.length; i < l; i++) {
               totalWords += posts[i].wordsCount;
+              
+              if (posts[i].content !== '')
+                activeDays++;
             }
 
             var noPosts = false; 
@@ -48,7 +53,8 @@ module.exports = function(app) {
               noPosts: noPosts,
               noPostToday: noPostToday,
               totalWords: totalWords,
-              content: content
+              content: content,
+              activeDays: activeDays
             });
           }
         });
