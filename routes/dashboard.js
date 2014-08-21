@@ -1,6 +1,5 @@
 var Post = require('../models/post');
 var moment = require('moment');
-var time = require('time');
 
 module.exports = function(app) {
   app
@@ -9,16 +8,16 @@ module.exports = function(app) {
         Post.find({ 'username': req.user.username})
           .sort({ date: 1 })
           .exec(function(err, posts) {
-          if (err)
-            res.render('dashboard/dashboard.ejs', { user: req.user, posts: null });
 
-          else {
+            if (err)
+              console.log(err);
+            
             var totalWords = 0;
             var activeDays = 0;
 
             for (var i = 0, l = posts.length; i < l; i++) {
               totalWords += posts[i].wordsCount;
-              
+
               if (posts[i].content !== '')
                 activeDays++;
             }
@@ -31,22 +30,18 @@ module.exports = function(app) {
               noPosts = true;
               noPostToday = true;
             }
-            else {
-              // if the latest post date field and today's date are not equal
-              // then the user hasn't yet written anything today
-              var lastPostDate = new time.Date(posts[length - 1].date.toString());
-              var now = new time.Date();
-              now.setTimezone(req.user.timezone);
-              lastPostDate.setTimezone(req.user.timezone);
 
-              if (!(isSameDay(moment(now), moment(lastPostDate))))  
+            else {
+                // if the latest post date field and today's date are not equal
+                // then the user hasn't yet written anything today
+              if (!(isSameDay(moment(now), moment(posts[length - 1].date))))  
                 noPostToday = true;                             
             } 
 
             var content = '';
             if(!noPostToday) 
               content = posts[length - 1].content;
-            
+              
             res.render('dashboard/dashboard.ejs', { 
               user: req.user, 
               posts: posts,
@@ -56,10 +51,10 @@ module.exports = function(app) {
               content: content,
               activeDays: activeDays
             });
-          }
-        });
+          });
       })
 
+    // Adding a new post, or updating one
     .post('/dashboard',isLoggedIn, function(req, res) {
 
       var content = req.body.content;
@@ -75,16 +70,14 @@ module.exports = function(app) {
           // a new one, we just update it
           if (posts.length > 0 && isSameDay(moment(posts[posts.length - 1].date), moment())) {
             var id = posts[posts.length - 1]._id;
-            Post.findById(id, function(err, post) {
-              if (err) console.log(err);
-              else {
-                post.content = content;
-                post.wordsCount = wordsCount;
 
-                post.save(function(err) {
-                  if (err) console.log(err);
-                });
-              }
+            Post.findById(id, function(err, post) {
+              post.content = content;
+              post.wordsCount = wordsCount;
+
+              post.save(function(err) {
+                if (err) console.log(err);
+              });
             });
 
           }
@@ -102,9 +95,7 @@ module.exports = function(app) {
           }
         }
       });
-
       res.redirect('/');
-
     })
    
   // To get a json array like the one GitHub uses to draw commits calendar on the user profile
@@ -134,16 +125,15 @@ module.exports = function(app) {
           for (var j = 0, l = posts.length; j < l; j++) {
 
             var date = moment(posts[j].date);
-            var wordsCount = posts[j].wordsCount;
-            var id = posts[j]._id;
 
-            if (isSameDay(date, newMoment))
+            if (isSameDay(date, newMoment)) {
+              var wordsCount = posts[j].wordsCount;
+              var id = posts[j]._id;
               item = [date.format('YYYY-MM-DD'), wordsCount, id];
-
+            }
           }
           calendar.push(item);
         }
-
         res.json(calendar);
     });
 
@@ -153,7 +143,7 @@ module.exports = function(app) {
   .get('/dashboard/view/:id', isLoggedIn, function(req, res) {
     Post.find({'_id': req.params.id, 'username': req.user.username}, function(err, post) {
 
-      if(err) console.log(err);
+      if (err) console.log(err);
 
       if (post) {
         var content = post[0].content.replace(/\n/g, "<br />");
@@ -164,8 +154,6 @@ module.exports = function(app) {
     });
   });
 };
-
-
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated())
