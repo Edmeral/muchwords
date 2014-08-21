@@ -34,7 +34,7 @@ module.exports = function(app) {
             else {
                 // if the latest post date field and today's date are not equal
                 // then the user hasn't yet written anything today
-              if (!(isSameDay(moment(now), moment(posts[length - 1].date))))  
+              if (!(isSameDay(moment(), moment(posts[length - 1].date))))  
                 noPostToday = true;                             
             } 
 
