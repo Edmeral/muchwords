@@ -12,19 +12,18 @@ $(function() {
     });
   }
 
-  $(".dial").knob({
-    'value': 50, 
+  // Managing the circualr progress bar
+  $(".dial").knob({ 
     'min':0,
     'max':100,
-    "skin":"tron",
-    "readOnly": true,
-    "thickness": 0.1,                 
-    'dynamicDraw': true,
-    "displayInput":false
+    'skin':"tron",
+    'thickness': 0.1,
+    'step': 0.1, 
+    'readOnly': true,
+    'displayInput': false              
   });
 
-  $('.dial').val(89);
-
+  // Prevent animations from appearing as the page load
   $('body').removeClass('preload');
   var content = $('#content');
   content.autosize();
@@ -49,7 +48,7 @@ $(function() {
   var previousLength = length;
   if (text === '') length = 0;
   progressBar.go((length / 751) * 100);
-  $('.dial').val((length / 751) * 100);
+  $('.dial').val((length / 751) * 100).trigger('change');
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
   content.keyup(function() {
@@ -57,7 +56,7 @@ $(function() {
     length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
     progressBar.go((length / 751) * 100);
-    $('.dial').val((length / 751) * 100);
+    $('.dial').val((length / 751) * 100).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
     savePost(); 
   });
