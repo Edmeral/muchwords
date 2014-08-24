@@ -206,3 +206,9 @@ header > * {
     -webkit-transform: scale(1.0);
   }
 }
+
+/* Cirucal progress bar styles */
+.circular-bar-counter {
+  margin-top: -30px;
+  margin-left: 40px;
+}

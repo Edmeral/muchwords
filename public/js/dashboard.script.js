@@ -15,9 +15,9 @@ $(function() {
   // Managing the circualr progress bar
   $(".dial").knob({ 
     'min':0,
-    'max':100,
+    'max':750,
     'skin':"tron",
-    'thickness': 0.1,
+    'thickness': 0.6180339887, // Golden ratio conjugate, it justs looks cool! 
     'step': 0.1, 
     'readOnly': true,
     'displayInput': false              
@@ -47,16 +47,16 @@ $(function() {
   var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
   var previousLength = length;
   if (text === '') length = 0;
-  progressBar.go((length / 751) * 100);
-  $('.dial').val((length / 751) * 100).trigger('change');
+  progressBar.go((length / 750) * 100);
+  $('.dial').val(length).trigger('change');
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
   content.keyup(function() {
     text = content.val();
     length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
-    progressBar.go((length / 751) * 100);
-    $('.dial').val((length / 751) * 100).trigger('change');
+    progressBar.go((length / 750) * 100);
+    $('.dial').val(length).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
     savePost(); 
   });
