@@ -1,5 +1,5 @@
-form p {
-  font-family: 'Montserrat'
+body {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
 .preload * {
   -webkit-transition: none !important;
