@@ -37,6 +37,7 @@ app
 require('./config/passport')(passport);
 require('./routes/default')(app, passport);
 require('./routes/dashboard')(app);
+require('./routes/api')(app);
 
 app.listen(port);
 console.log('Head out to http://localhost:' + port);
