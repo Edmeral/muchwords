@@ -42,7 +42,24 @@ module.exports = function(app) {
           res.json(calendar);
       });
 
+    })
+  
+  // Getting a json file for all posts
+  .get('/dashboard/posts', isLoggedIn, function(req, res) {
+    Post.find({ 'username': req.user.username }, function(err, posts) {
+      if (err) console.log(err);
+
+      var results = [];
+      var post = {};
+
+      for (var i = 0; i < posts.length; i++) {
+        post.id = posts[i]._id;
+        post.date = posts[i].date;
+        results.push(post);
+      }
+      res.json(results);
     });
+  });
 };
 
 function isLoggedIn(req, res, next) {
