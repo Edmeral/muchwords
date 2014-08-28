@@ -61,7 +61,10 @@ module.exports = function(app) {
       var wordsCount = content.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
       if (content === '') wordsCount = 0;
       
-      Post.find({ 'username': req.user.username }, function(err, posts) {
+      Post
+        .find({ 'username': req.user.username })
+        .sort({ 'date': 1 })
+        .exec(function(err, posts) {
 
         if (err) console.log(err);
 
