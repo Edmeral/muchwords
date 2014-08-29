@@ -1,5 +1,7 @@
 $(function() {
 
+  var changed = false;
+
   function savePost() {
     submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
 
@@ -52,6 +54,7 @@ $(function() {
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
   content.keyup(function() {
+    changed = true;
     text = content.val();
     length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
