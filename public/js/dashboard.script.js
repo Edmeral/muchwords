@@ -14,7 +14,15 @@ $(function() {
     });
   }
 
-  // Managing the circualr progress bar
+  // Saving the post every 5 seconds, if the content changes
+  setInterval(function() {
+    if (changed) {
+      changed = false;
+      savePost();
+    }
+  }, 5000);
+
+  // Defining the circualr progress bar
   $(".dial").knob({ 
     'min':0,
     'max':750,
@@ -61,7 +69,6 @@ $(function() {
     progressBar.go((length / 750) * 100);
     $('.dial').val(length).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
-    savePost(); 
   });
 
   /**
