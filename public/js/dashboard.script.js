@@ -10,7 +10,7 @@ $(function() {
 
   function savePost() {
     submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
-
+    changed = false;
     $.post('/dashboard', $('form').serialize(), function() {
       submit.text('Saved!');
       submit.removeClass('btn-default').addClass('btn-success');
@@ -23,7 +23,7 @@ $(function() {
   // Saving the post every 5 seconds, if the content changes
   setInterval(function() {
     if (changed) {
-      changed = false;
+      
       savePost();
     }
   }, 5000);
