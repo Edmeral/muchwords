@@ -1,6 +1,12 @@
+
 $(function() {
 
   var changed = false;
+
+  window.onbeforeunload = function() {
+    if (changed)
+      return 'You have unsaved changes, are you sure you want to navigate away?';
+  };
 
   function savePost() {
     submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
