@@ -22,10 +22,8 @@ $(function() {
 
   // Saving the post every 5 seconds, if the content changes
   setInterval(function() {
-    if (changed) {
-      
+    if (changed) 
       savePost();
-    }
   }, 5000);
 
   // Defining the circualr progress bar
