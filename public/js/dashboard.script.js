@@ -1,6 +1,6 @@
 
 $(function() {
-
+  var submit = $('#submit');
   var changed = false;
 
   window.onbeforeunload = function() {
@@ -9,13 +9,12 @@ $(function() {
   };
 
   function savePost() {
-    submit.text('Saving..').removeClass('btn-success').addClass('btn-default');
+    submit.text('Saving..');
     changed = false;
     $.post('/dashboard', $('form').serialize(), function() {
       submit.text('Saved!');
-      submit.removeClass('btn-default').addClass('btn-success');
       setTimeout(function() {
-        submit.text('Save');
+        submit.text('Draft');
       }, 2000);
     });
   }
@@ -73,15 +72,6 @@ $(function() {
     progressBar.go((length / 750) * 100);
     $('.dial').val(length).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
-  });
-
-  /**
-   *  Saving the post without refreshing the page
-  */
-  var submit = $('#submit');
-  $('#submit').click(function(e) {
-    e.preventDefault();
-    savePost();
   });
 
   /**

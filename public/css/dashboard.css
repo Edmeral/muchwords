@@ -212,3 +212,12 @@ header > * {
   margin-top: -30px;
   margin-left: 40px;
 }
+.circular-bar {
+  display: inline-block;
+}
+
+#submit {
+  float: right;
+  color: grey;
+  display: inline-block;
+}
