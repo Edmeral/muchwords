@@ -217,7 +217,7 @@ header > * {
 }
 
 #submit {
+  display: inline-block;
   float: right;
   color: grey;
-  display: inline-block;
 }
