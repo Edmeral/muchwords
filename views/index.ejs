@@ -42,6 +42,8 @@
         <label>Password</label>
         <input type="password" class="form-control" name="password">
       </div>
+      
+      <input type="hidden" id="timezone" name="timezone" value="">
 
       <button type="submit" class="btn btn-success">Signup</btn>
 
@@ -66,7 +68,7 @@
         <label>Password</label>
         <input type="password" class="form-control" name="password">
       </div>
-
+      
       <button type="submit" class="btn btn-warning">Login</btn>
       
     </form>
@@ -74,5 +76,10 @@
     </div>
     
   </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+  <script>
+    $('#timezone').val(jstz.determine().name());
+  </script>
 </body>
 </html>
