@@ -1,5 +1,5 @@
 var Post = require('../models/post');
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 module.exports = function(app) {
   app
@@ -8,6 +8,8 @@ module.exports = function(app) {
         Post.find({ 'username': req.user.username})
           .sort({ date: 1 })
           .exec(function(err, posts) {
+
+            
 
             if (err)
               console.log(err);
@@ -32,9 +34,9 @@ module.exports = function(app) {
             }
 
             else {
-                // if the latest post date field and today's date are not equal
-                // then the user hasn't yet written anything today
-              if (!(isSameDay(moment(), moment(posts[length - 1].date))))  
+              // if the latest post date field and today's date are not equal
+              // then the user hasn't yet written anything today
+              if (!(isSameDay(moment(), moment(posts[length - 1].date), req.user.timezone)))  
                 noPostToday = true;                             
             } 
 
@@ -55,7 +57,7 @@ module.exports = function(app) {
       })
 
     // Adding a new post, or updating one
-    .post('/dashboard',isLoggedIn, function(req, res) {
+    .post('/dashboard', isLoggedIn, function(req, res) {
 
       var content = req.body.content;
       var wordsCount = content.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
@@ -71,7 +73,7 @@ module.exports = function(app) {
         else {
           // Checking if there is already a post that was written today we don't need to create
           // a new one, we just update it
-          if (posts.length > 0 && isSameDay(moment(posts[posts.length - 1].date), moment())) {
+          if (posts.length > 0 && isSameDay(moment(posts[posts.length - 1].date), moment(), req.user.timezone)) {
             var id = posts[posts.length - 1]._id;
 
             Post.findById(id, function(err, post) {
@@ -124,6 +126,8 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
-function isSameDay(moment1, moment2) {
-  return moment1.isSame(moment2, 'day');
+function isSameDay(moment1, moment2, timezone) {
+  var m1 = moment1;
+  var m2 = moment2;
+  return m1.tz(timezone).isSame(m2.tz(timezone), 'day');
 }
