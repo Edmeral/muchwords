@@ -15,6 +15,7 @@ module.exports = function(app) {
           if (err) console.log(err);
           var calendar = [];
           var timezone = req.user.timezone;
+          
           /* -Begin from this moment minus 365 days.
             - a loop that iterates until this moment
             - For each date we see if there is a post that was written in the same day

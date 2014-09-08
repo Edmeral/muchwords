@@ -108,7 +108,7 @@ $(function() {
         title = '<strong>No words</strong> on ' + dateStr;
 
       $(quartile).attr('title', title);
-      if (link) $(quartile).attr('href', '/dashboard/view/' + link);
+      if (link && wordsCount) $(quartile).attr('href', '/dashboard/view/' + link);
 
       if (wordsCount === 0) cssClass = 'q0';
       else if (wordsCount < d1) cssClass = 'q1';
