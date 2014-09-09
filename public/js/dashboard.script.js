@@ -43,11 +43,12 @@ $(function() {
   $('#title').autosize();
 
 
-  content.one('keyup', function() {
-    $('body').scrollTo('#content', { duration: 'slow', offset: -50 });
+ // content.one('keyup', function() {
+ //   $('body').scrollTo('#content', { duration: 'slow', offset: -50 });
     
     
-  });
+ //  });
+
   /**
    *  Manging the state of the progress bar on top
   */
