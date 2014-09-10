@@ -16,13 +16,19 @@
 
 <body>
   <div class="view-container">
-    <p id="view">
-     
-
       
-      <%- post %>
+
+    <div id="view">
+
+      <div id="info">
+        <p id="date"><%= post.date %></p>
+        <p id="words-count"><%= post.wordsCount %> words.</p>
+      </div>
+    
+
+      <p><%- content %></p>
  
-  </p>
+    </div>
 
   </div>
   

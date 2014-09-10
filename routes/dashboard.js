@@ -111,7 +111,7 @@ module.exports = function(app) {
 
       if (post) {
         var content = post[0].content.replace(/\n/g, "<br />");
-        res.render('dashboard/view.ejs', { post: content});
+        res.render('dashboard/view.ejs', { content: content, post: post[0] });
       }
       else 
         res.redirect('/');

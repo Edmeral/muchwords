@@ -221,3 +221,10 @@ header > * {
   float: right;
   color: grey;
 }
+
+/* view.ejs styles */
+
+#info * {
+  display: inline-block;
+  
+}
