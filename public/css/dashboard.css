@@ -228,6 +228,7 @@ header > * {
   display: inline-block;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   font-size: 14px;
+  color: grey;
 }
 
 #info #date {
