@@ -111,7 +111,9 @@ module.exports = function(app) {
 
       if (post) {
         var content = post[0].content.replace(/\n/g, "<br />");
-        res.render('dashboard/view.ejs', { content: content, post: post[0] });
+        var wordsCount = post[0].wordsCount + ' word' + (post[0].wordsCount == 1 ? '':'s');
+        var date = moment(post[0].date).format('dddd, MMM Do YYYY');
+        res.render('dashboard/view.ejs', { content: content, date: date, wordsCount: wordsCount });
       }
       else 
         res.redirect('/');
