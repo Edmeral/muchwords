@@ -47,6 +47,8 @@ body {
   font-size: 1.25rem;
   color: inherit;
   text-decoration: none;
+  transition: background-color 0.2s ease;
+  
 }
 
 #login a:hover {
