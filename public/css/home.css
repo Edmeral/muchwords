@@ -1,0 +1,11 @@
+.hero {
+  background-image: url("/img/splash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 600px;
+}
+
+.container {
+  
+}
