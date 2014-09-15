@@ -1,3 +1,9 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+body {
+  color: white;
+}
+
 .hero {
   background-image: url("/img/splash.jpg");
   background-repeat: no-repeat;
@@ -17,4 +23,34 @@
   background-image: url("/img/home-logo.png");
   height: 51px;
   width: 266px;
+}
+
+#login {
+  display: inline-block;
+  float: right;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+#login p {
+  margin: 0;
+}
+
+#login a {
+  display: block;
+  border: 1px solid white;
+  border-radius: .25rem;
+  font-weight: 700;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+#login a:hover {
+  background-color: white;
+  color: #A86429;
+  text-shadow: none;
 }
