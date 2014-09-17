@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,300);
 
 body {
   color: white;
@@ -54,4 +54,16 @@ body {
   background-color: white;
   color: #A86429;
   text-shadow: none;
+}
+
+.main-text {
+  text-align: center;
+}
+
+.main-text h1 {
+  font-family: Raleway, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+  margin-top: 150px;
 }
