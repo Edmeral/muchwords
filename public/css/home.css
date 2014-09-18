@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oxygen:400);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oxygen:400|Oswald);
 
 body {
   color: white;
@@ -76,6 +76,7 @@ body {
 
 #signup {
  text-align: center;
+ margin-top: 50px;
 }
 
 /*.btn {
@@ -116,7 +117,7 @@ input {
   height: 35px;
   width: 300px;
   margin: 20px;
-  font-family: 'Lato', Helvetica, Arial, sans-serif;
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
   color: white;
   font-size: 1.25rem;
   
