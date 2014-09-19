@@ -86,7 +86,7 @@ header > * {
   position: relative;
   font-family: 'Montserrat', Helvetica, Arial, Sans;
   height: 49px;
-  background-image: url(/images/logo.png);
+  background-image: url(/img/logo.png);
   letter-spacing: -1.5px;
   width: 200px;
   transition: border-bottom 0.2s ease, color 0.2s ease;
