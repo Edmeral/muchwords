@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
     username: String,
     password: String,
-    timezone: String
+    timezone: { type: String, default: 'Europe/London'}
 });
 
 userSchema.methods.generateHash = function(password) {
