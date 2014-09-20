@@ -84,6 +84,7 @@ input, button {
   display: inline-block;
   background: rgba(0,0,0,0.1);
   border: 4px solid white;
+  cursor: pointer;
   height: 35px;
   width: 300px;
   margin: 20px;
