@@ -1,4 +1,3 @@
-
 $(function() {
   var submit = $('#submit');
   var changed = false;
@@ -147,4 +146,12 @@ $(function() {
     $('.longest-streak').text('Longest streak: ' + longestStreak + (longestStreak == 1 ? ' day.':' days.'));
     $('.total-words').text('Total words written: ' + totalWords + '.');
   });
+  
+  // Adding to keyboard shortcut to save the post
+  function saveHandler() {
+    savePost();
+    return false;
+  }
+  $('#content').bind('keydown', 'Ctrl+s', saveHandler);
+  $(document).bind('keydown', 'Ctrl+s', saveHandler);
 });
