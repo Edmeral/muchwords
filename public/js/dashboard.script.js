@@ -16,6 +16,8 @@ $(function() {
         submit.text('Draft');
       }, 2000);
     });
+
+    return false;
   }
 
   // Saving the post every 5 seconds, if the content changes
@@ -148,10 +150,6 @@ $(function() {
   });
   
   // Adding to keyboard shortcut to save the post
-  function saveHandler() {
-    savePost();
-    return false;
-  }
-  $('#content').bind('keydown', 'Ctrl+s', saveHandler);
-  $(document).bind('keydown', 'Ctrl+s', saveHandler);
+  $('#content').bind('keydown', 'Ctrl+s', savePost);
+  $(document).bind('keydown', 'Ctrl+s', savePost);
 });
