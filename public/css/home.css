@@ -128,7 +128,12 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 #bar {
-  background-color: rgba(166,92,43,0.8); /* change this */
+  background: -webkit-linear-gradient(90deg, rgba(255, 81, 47, 0.3) 10%, rgba(240, 152, 25, 0.3) 90%); 
+  background:    -moz-linear-gradient(90deg, rgba(255, 81, 47, 0.3) 10%, rgba(240, 152, 25, 0.3) 90%); 
+  background:     -ms-linear-gradient(90deg, rgba(255, 81, 47, 0.3) 10%, rgba(240, 152, 25, 0.3) 90%); 
+  background:      -o-linear-gradient(90deg, rgba(255, 81, 47, 0.3) 10%, rgba(240, 152, 25, 0.3) 90%); 
+  background:         linear-gradient(90deg, rgba(255, 81, 47, 0.3) 10%, rgba(240, 152, 25, 0.3) 90%); 
+
   position: absolute;
   bottom: 0px;
   width: 100%;
