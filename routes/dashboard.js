@@ -50,7 +50,7 @@ module.exports = function(app) {
               noPosts: noPosts,
               noPostToday: noPostToday,
               totalWords: totalWords,
-              content: content,
+              content: content.replace(/&nbsp;/g, ' '),
               activeDays: activeDays
             });
           });
