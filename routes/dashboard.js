@@ -59,7 +59,7 @@ module.exports = function(app) {
     // Adding a new post, or updating one
     .post('/dashboard', isLoggedIn, function(req, res) {
 
-      var content = req.body.content;
+      var content = req.body.content.replace(/ /g, '&nbsp;');
       var wordsCount = content.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
       if (content === '') wordsCount = 0;
       
