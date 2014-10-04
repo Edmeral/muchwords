@@ -30,6 +30,7 @@
 
         <input type="text" placeholder="Username" name="username">
         <input type="password" placeholder="Password" name="password">
+        <input type="hidden" id="timezone" name="timezone" value="">
         <button>CREATE ACCOUNT</button>
 
       </form>
@@ -40,5 +41,10 @@
     </div>
   </div>
 
+  <script src="js/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+  <script>
+    $('#timezone').val(jstz.determine().name());
+  </script>
 </body>
 </html>
