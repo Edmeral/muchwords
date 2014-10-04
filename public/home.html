@@ -41,10 +41,9 @@
     </div>
   </div>
 
-  <script src="js/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
   <script>
-    $('#timezone').val(jstz.determine().name());
+     document.getElementById('timezone').value = jstz.determine().name();
   </script>
 </body>
 </html>
