@@ -50,7 +50,7 @@ module.exports = function(app) {
               noPosts: noPosts,
               noPostToday: noPostToday,
               totalWords: totalWords,
-              content: content.replace(/&nbsp;/g, ' '),
+              content: content,
               activeDays: activeDays
             });
           });
@@ -59,7 +59,7 @@ module.exports = function(app) {
     // Adding a new post, or updating one
     .post('/dashboard', isLoggedIn, function(req, res) {
 
-      var content = req.body.content.replace(/ /g, '&nbsp;');
+      var content = req.body.content;
       var wordsCount = content.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
       if (content === '') wordsCount = 0;
       
@@ -110,7 +110,7 @@ module.exports = function(app) {
       if (err) console.log(err);
 
       if (post) {
-        var content = post[0].content.replace(/\n/g, "<br />");
+        var content = post[0].content;
         var wordsCount = post[0].wordsCount + ' word' + (post[0].wordsCount == 1 ? '':'s');
         var date = moment(post[0].date).format('dddd, MMM Do YYYY');
         res.render('dashboard/view.ejs', { content: content, date: date, wordsCount: wordsCount });

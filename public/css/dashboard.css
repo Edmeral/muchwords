@@ -28,6 +28,10 @@ form {
   font-size: 17px;
 }
 
+#view p {
+  white-space: pre;
+}
+
 #title, #content {
   outline: none;
   border: none;
