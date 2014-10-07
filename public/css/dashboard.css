@@ -29,7 +29,7 @@ form {
 }
 
 #view p {
-  white-space: pre;
+  white-space: pre-wrap;
 }
 
 #title, #content {
