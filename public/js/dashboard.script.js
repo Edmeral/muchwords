@@ -1,4 +1,5 @@
 $(function() {
+  var wordsNum = 500;
   var submit = $('#submit');
   var changed = false;
 
@@ -29,7 +30,7 @@ $(function() {
   // Defining the circualr progress bar
   $(".dial").knob({ 
     'min':0,
-    'max':750,
+    'max': wordsNum,
     'skin':"tron",
     'thickness': 0.6180339887, // Golden ratio conjugate, it justs looks cool! 
     'step': 0.1, 
@@ -62,7 +63,7 @@ $(function() {
   var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
   var previousLength = length;
   if (text === '') length = 0;
-  progressBar.go((length / 750) * 100);
+  progressBar.go((length / wordsNum) * 100);
   $('.dial').val(length).trigger('change');
   $('form p').text(length + (length == 1 ? ' word':' words') + '.');
 
@@ -71,7 +72,7 @@ $(function() {
     text = content.val();
     length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
-    progressBar.go((length / 750) * 100);
+    progressBar.go((length / wordsNum) * 100);
     $('.dial').val(length).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
   });
