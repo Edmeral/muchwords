@@ -59,22 +59,20 @@ $(function() {
     id: 'progressbar'
   });
 
-  var text = content.val();
-  var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
-  var previousLength = length;
-  if (text === '') length = 0;
-  progressBar.go((length / wordsNum) * 100);
-  $('.dial').val(length).trigger('change');
-  $('form p').text(length + (length == 1 ? ' word':' words') + '.');
-
-  content.keyup(function() {
-    changed = true;
-    text = content.val();
-    length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
+  function textChangeHandler() {
+    var text = content.val();
+    var length = text.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
     if (text === '') length = 0;
     progressBar.go((length / wordsNum) * 100);
     $('.dial').val(length).trigger('change');
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
+  }
+
+  textChangeHandler();
+
+  content.keyup(function() {
+    changed = true;
+    textChangeHandler();
   });
 
   /**
