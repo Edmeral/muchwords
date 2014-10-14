@@ -86,6 +86,10 @@ header > * {
   text-transform: uppercase;
 }
 
+a {
+  text-decoration: none;
+}
+
 #header-dashboard {
   position: relative;
   font-family: 'Montserrat', Helvetica, Arial, Sans;
