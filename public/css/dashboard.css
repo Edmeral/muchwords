@@ -75,15 +75,16 @@ header {
   margin: auto;
   min-width: 750px;
   font-size: 23px;
-  height: 50px;
+  height: 49px;
   border-bottom: 1px solid #ddd;
   box-shadow: -0.5px 3px 2px -2px rgba(200,200,200,0.3);
 }
 
 header > * {
   display: inline-block;
-  line-height: 50px; 
+  line-height: 49px; 
   text-transform: uppercase;
+
 }
 
 a {
@@ -124,6 +125,7 @@ a {
    border-bottom: 4px solid #E9662C;
    color: #333333;
    text-decoration: none;
+   transition: border-bottom 0.2s ease, color 0.2s ease;
 }
 
 
