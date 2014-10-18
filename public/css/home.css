@@ -163,3 +163,6 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   margin-right: 2.666666667%;
   text-align: center;
 }
+#explain p {
+  color: #474f5c;
+}
