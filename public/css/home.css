@@ -166,3 +166,13 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 #explain p {
   color: #474f5c;
 }
+
+#explain a {
+  color: #BF7830;
+  text-decoration: none;
+}
+
+#explain a:hover {
+  color: #955725;
+  text-decoration: none;
+}
