@@ -149,6 +149,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 /*
 ** Styles for the explain area (below the hero)
 */
+
+
 #explain {
   width: 70%;
   margin: auto;
@@ -176,3 +178,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #955725;
   text-decoration: none;
 }
+
+/*
+/ Footer styles
+*/
+
