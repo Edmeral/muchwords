@@ -183,3 +183,8 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 / Footer styles
 */
 
+footer {
+  background-color: #fafafa;
+  border-top: 1px solid rgba(164, 105, 39, 0.2);
+  width: 100%;
+}
