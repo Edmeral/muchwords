@@ -187,4 +187,6 @@ footer {
   background-color: #fafafa;
   border-top: 1px solid rgba(164, 105, 39, 0.2);
   width: 100%;
+  position: absolute;
+  bottom: 0;
 }
