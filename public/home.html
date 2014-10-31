@@ -60,7 +60,7 @@
     </div>
 
     <div id="bar">
-      <img src="img/arrows.png" alt="">
+      <a href="#"><img src="img/arrows.png" alt=""></a>
     </div>
 
   </div>
@@ -93,8 +93,15 @@
   
   <script src="/js/home.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.scrollTo-min.js"></script>
   <script>
-     document.getElementById('timezone').value = jstz.determine().name();
+    document.getElementById('timezone').value = jstz.determine().name();
+    $('#bar a').click(function(e) {
+      e.preventDefault();
+      $('body').scrollTo('#explain', { duration: 'medium'});
+    });
+     
   </script>
 </body>
 </html>
