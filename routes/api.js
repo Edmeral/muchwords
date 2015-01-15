@@ -3,7 +3,7 @@ var moment = require('moment-timezone');
 
 module.exports = function(app) {
   // To get a json array like the one GitHub uses to draw commits calendar on the user profile
-  // https://github.com/users/Edmeral/contributions_calendar_data?_=1407428689806
+  // Something like this: https://github.com/users/Edmeral/contributions_calendar_data?_=1407428689806
   app
     .get('/dashboard/calendar', isLoggedIn, function(req, res) {
       Post
