@@ -1,0 +1,123 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oxygen:400|Oswald);
+
+body {
+  color: white;
+  margin: 0;
+  font-family: Lato, Helvetica, Arial, sans-serif;
+}
+
+#hero {
+  background-image: url("/img/splash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  height: 600px;
+  position: relative;
+  padding-top: 10px;
+}
+
+#logo {
+  display: block;
+  background-image: url("/img/home-logo.png");
+  height: 51px;
+  width: 266px;
+  float: left;
+}
+
+#login {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+#login p {
+  margin: 0;
+  text-align: center;
+}
+
+#login a{
+  display: block;
+  border: 1px solid white;
+  border-radius: .25rem;
+  font-weight: 700;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+#login a:hover {
+  background-color: white;
+  color: #A86429;
+  text-shadow: none;
+}
+
+.main-text {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.main-text h1, h3 {
+  font-family: Raleway, Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 60px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+
+.main-text h3 {
+  font-weight: 200;
+  font-size: 40px;
+}
+
+#signup {
+ text-align: center;
+ margin-top: 50px;
+}
+
+input, button {
+  outline: 0;
+  display: inline-block;
+  background: rgba(0,0,0,0.1);
+  border: 4px solid white;
+  height: 35px;
+  width: 300px;
+  margin: 10px;
+  font-family: 'Oswald', Helvetica, Arial, sans-serif;
+  color: white;
+  font-size: 1.25rem;
+  padding: 10px;
+}
+
+button {
+  width: 180px;
+  height: 63px;
+  background: rgba(0,0,0,0);
+  margin: 0;
+  margin-bottom: 2px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+button:hover {
+  text-shadow: none;
+  background-color: white;
+  color: #A56527;
+}
+
+input::-webkit-input-placeholder { /* WebKit browsers */
+    color: white;
+    opacity: 0.5;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color: white;
+   opacity: 0.5;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color: white;
+   opacity: 0.5;
+}
+input:-ms-input-placeholder { /* Internet Explorer 10+ */
+   color: white;
+   opacity: 0.5
+}
