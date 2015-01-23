@@ -37,7 +37,6 @@ module.exports = function (passport) {
           newUser.username = username;
           newUser.password = newUser.generateHash(password);
           newUser.timezone = req.body.timezone;
-          console.log(req.body.timezone);
 
           newUser.save(function(err) {
             if (err) throw err;

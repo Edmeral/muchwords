@@ -40,6 +40,8 @@ $(function() {
 
   // Prevent animations from appearing as the page load
   $('body').removeClass('preload');
+
+  // Text area grows as content grows
   var content = $('#content');
   content.autosize();
   $('#title').autosize();
@@ -128,7 +130,7 @@ $(function() {
       $('#calendar-grid').append(quartile);
     }
 
-    // Geting the longest and current streaks + total days of writing.   
+    // Getting the longest and current streaks + total days of writing.   
     var streaks = [];
     var tmpStreak = 0;
     for (i = posts.length - 1; i >= 0; i--) {
@@ -140,7 +142,7 @@ $(function() {
     }
     var currentStreak = streaks[0];
     // If the user hasn't written anything today, the current strak
-    // shoudln't be equall to 0 instead it shoudl equal the the previous streak
+    // shoudln't be equal to 0 instead it should equal the the previous streak
     if (posts[posts.length - 1][1] === 0) currentStreak = streaks[1];
     var longestStreak = Math.max.apply(Math, streaks);
     $('.current-streak').text('Current streak: ' + currentStreak + (currentStreak == 1 ? ' day.':' days.'));

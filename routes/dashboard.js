@@ -9,8 +9,6 @@ module.exports = function(app) {
           .sort({ date: 1 })
           .exec(function(err, posts) {
 
-            
-
             if (err)
               console.log(err);
             
@@ -60,7 +58,7 @@ module.exports = function(app) {
     .post('/dashboard', isLoggedIn, function(req, res) {
 
       var content = req.body.content;
-      var wordsCount = content.replace(/^\s+|\s+$/g,"").split(/\s+/).length;
+      var wordsCount = content.replace(/^\s+|\s+$/g, '').split(/\s+/).length;
       if (content === '') wordsCount = 0;
       
       Post
