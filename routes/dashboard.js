@@ -1,4 +1,5 @@
 var Post = require('../models/post');
+var User = require('../models/user');
 var moment = require('moment-timezone');
 
 module.exports = function(app) {
@@ -116,6 +117,36 @@ module.exports = function(app) {
       else 
         res.redirect('/');
     });
+  })
+
+  .get('/dashboard/settings', isLoggedIn, function(req, res) {
+    res.render('dashboard/settings.ejs', {
+      email: req.user.email || '',
+      timezone: req.user.timezone
+    });
+  })
+  .post('/dashboard/settings', isLoggedIn, function(req, res) {
+    var email = req.body.email;
+    var timezone = req.body.timezone;
+
+    User.findOne({'username': req.user.username}, function(err, user) {
+
+      var message = 'There was an error!';
+      if (err) console.log(err);
+
+      else {
+        user.email = req.body.email || user.email;
+        user.timezone = req.body.timezone || user.timezone;
+        user.save(function(err) {
+          if (!err) message = 'New settings saved successfully!';
+          res.render('dashboard/settings.ejs', {
+            message: message,
+            email: email,
+            timezone: timezone
+          })
+        });
+      }
+    })
   });
 };
 

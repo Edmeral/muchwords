@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8">
+  <title>751 words - Dashboard</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400|Merriweather:400' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/tipsy.css">
+
+</head>
+
+<body class="preload">
+  
+  <header>
+    <a id="header-dashboard" href="/dashboard"></a>
+    <div id="header-navigation">
+      <a class="archives" href="#">Archives</a>
+      <a class="active settings" href="/dashboard/settings">Settings</a>
+      <a class="logout" href="/logout">Log out</a>
+    </div>
+  </header>
+  
+  
+  <div class="container">
+
+    
+    <form action="/dashboard/settings" method="post">
+      <br>
+      <% if (typeof message != 'undefined') { %>
+      <div class="alert alert-success"><%= message %></div>
+      <% } %>
+
+      <div class="form-group">
+        <label>Email Adress</label>
+        <input type="email" class="form-control" name="email" value="<%= email %>">
+        <p>We'll only use your email to retrieve your password.</p>
+      </div>
+
+      <div class="form-group">
+        <label>Time Zone</label>
+         <select name="timezone" class="form-control">
+            <option value="<%= timezone %>" selected><%= timezone %></option>
+        </select>
+        <p id="timezone-message">You can only change the timezone if you're in a timezone different than the one you registered with.</p>
+      </div>
+
+      <button type="submit" class="btn btn-success">Save</btn>
+
+    </form>
+  </div>
+
+  
+  <script src="/js/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+  <script src="/js/settings.script.js"></script>
+</body>
+</html>

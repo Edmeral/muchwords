@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
     username: String,
     password: String,
+    email: { type: String, default: ''},
     timezone: { type: String, default: 'Europe/London'}
 });
 
