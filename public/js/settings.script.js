@@ -9,4 +9,16 @@ $(function() {
       $('select').append(newoption);
       $('#timezone-message').remove();
     }
+
+    // Enabling save button only when inputs change
+    var button = $('button[type=submit]');
+    $('input[type=email]').keyup(function() {
+      if ($(this).val() != savedEmail)
+        button.removeAttr('disabled');
+      else
+        button.attr('disabled', 'disabled');
+    });
+    $('select').change(function() {
+      button.removeAttr('disabled');
+    });
   });
