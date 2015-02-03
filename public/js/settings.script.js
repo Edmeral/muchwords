@@ -10,15 +10,12 @@ $(function() {
       $('#timezone-message').remove();
     }
 
-    // Enabling save button only when inputs change
+    // Enabling save button when inputs change
     var button = $('button[type=submit]');
-    $('input[type=email]').keyup(function() {
-      if ($(this).val() != savedEmail)
+    $('input[type=email]').one('keyup', function() {
         button.removeAttr('disabled');
-      else
-        button.attr('disabled', 'disabled');
     });
-    $('select').change(function() {
+    $('select').one('change', function() {
       button.removeAttr('disabled');
     });
   });
