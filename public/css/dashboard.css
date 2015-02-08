@@ -176,6 +176,9 @@ a {
   width: 70%;
   margin: auto;
 }
+#calendar .caption .quartile:hover {
+  border: none;
+}
 
 /* Spinner Animation */
 .spinner {
@@ -223,7 +226,7 @@ a {
   }
 }
 
-/* Cirucal progress bar styles */
+/* circular progress bar styles */
 .circular-bar-counter {
   margin-top: -30px;
   margin-left: 40px;
