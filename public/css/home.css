@@ -179,6 +179,28 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   text-decoration: none;
 }
 
+/* 
+/ Login modal styles 
+*/
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  visibility: hidden;
+  opacity: 0;
+  background-color: rgba(52, 54, 66, 0.9);
+  transition: opacity 0.3s 0, visibility 0 0.3s;
+}
+ 
+.login-modal.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s 0, visibility 0 0;
+}
+
 /*
 / Footer styles
 */
