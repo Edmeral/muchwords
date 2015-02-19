@@ -213,6 +213,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   font-family: Oswald;
 }
 
+.login-modal button:hover {
+  color: rgba(52, 54, 66, 0.9);
+}
+
 /*
 / Footer styles
 */
