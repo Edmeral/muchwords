@@ -1,23 +1,37 @@
-var loginModal = $('.login-modal');
+$(function() {
+  // Getting the timezone
+  $('#timezone').val(jstz.determine().name());
 
-$('#login a').click(function() {
-  loginModal.addClass('is-visible');
-  $('.login-modal input[type=text]').focus();
-});
+  // Scrolling to the explain area when clicking arrows
+  $('#bar a').click(function() {
+    $('body').scrollTo('#explain', { duration: 'medium', easing: 'swing'});
+    return false;
+  });
 
-$('.close-modal').click(function() {
-  loginModal.removeClass('is-visible');
-});
+  /*
+   * Setting up the login modal
+  */
+  var loginModal = $('.login-modal');
 
-// Only closing modal if we click oustside theh login box
-loginModal.click(function(event) {
-  if ($(event.target).is(loginModal))
+  $('#login a').click(function() {
+    loginModal.addClass('is-visible');
+    $('.login-modal input[type=text]').focus();
+    return false;
+  });
+
+  $('.close-modal').click(function() {
     loginModal.removeClass('is-visible');
+  });
+
+  // Only closing modal if we click oustside the login box
+  loginModal.click(function(event) {
+    if ($(event.target).is(loginModal))
+      loginModal.removeClass('is-visible');
+  });
+
+  // Closing modal when clicking ESC button
+  $(document).keyup(function(event) {
+    if (event.which == 27)
+      loginModal.removeClass('is-visible');
+  });
 });
-
-// Closing modal when clicking ESC button
-$(document).keyup(function(event) {
-  if (event.which == 27)
-    loginModal.removeClass('is-visible');
-})
-
