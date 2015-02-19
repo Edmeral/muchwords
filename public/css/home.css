@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oxygen:400|Oswald);
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oswald);
 
 body {
   color: white;
@@ -210,7 +210,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .close-modal {
   cursor: pointer;
   float: right;
-  font-family: Oswald;
+  font-family: Oswald, Helvetica, Arial, sans-serif;;
 }
 
 .login-modal button:hover {
