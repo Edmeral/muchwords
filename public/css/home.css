@@ -98,7 +98,7 @@ button {
   width: 180px;
   height: 63px;
   background: rgba(0,0,0,0);
-  margin: 0;
+  margin: 10px;
   margin-bottom: 2px;
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   cursor: pointer;
@@ -199,6 +199,18 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   visibility: visible;
   opacity: 1;
   transition: opacity 0.3s 0, visibility 0 0;
+}
+
+.login-box {
+  width: 338px;
+  margin: auto;
+  margin-top: 150px;
+}
+
+.close-modal {
+  cursor: pointer;
+  float: right;
+  font-family: Oswald;
 }
 
 /*
