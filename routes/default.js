@@ -17,11 +17,16 @@ module.exports = function (app, passport){
       failureRedirect: '/',
       failureFlash: true
     }))
-    .post('/login', passport.authenticate('login', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/',
-      failureFlash: true
-    }))
+    .post('/login', function(req, res, next) {
+      passport.authenticate('login', function(err, user, info) {
+        if (err) return next(error);
+        if (!user) return res.send(401);
+        req.login(user, function(err) {
+          if (err) { return next(err); }
+          return res.redirect('/dashboard');
+        });
+      })(req, res, next);
+    })
 
     .get('/logout', function(req, res) {
       req.logout();
