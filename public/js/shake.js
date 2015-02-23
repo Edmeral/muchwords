@@ -25,9 +25,10 @@
             for (var x = 1; x <= settings.shakes; x++) {
                 $this.animate({ left: settings.distance * -1 }, (settings.duration / settings.shakes) / 4)
                     .animate({ left: settings.distance }, (settings.duration / settings.shakes) / 2)
-                    .animate({ left: 0 }, (settings.duration / settings.shakes) / 4);
+                    .animate({ left: 0 }, (settings.duration / settings.shakes) / 4, function() {
+                        $this.css('position', 'static');
+                    });
             }
-            $this.css('position', 'static');
         });
     };
 }(jQuery));
