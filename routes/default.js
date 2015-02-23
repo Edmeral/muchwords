@@ -23,7 +23,7 @@ module.exports = function (app, passport){
         if (!user) return res.send(401);
         req.login(user, function(err) {
           if (err) { return next(err); }
-          return res.redirect('/dashboard');
+          return res.send(200);
         });
       })(req, res, next);
     })

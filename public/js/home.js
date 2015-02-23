@@ -35,3 +35,21 @@ $(function() {
       loginModal.removeClass('is-visible');
   });
 });
+
+/*
+* Handling Submit event
+*/
+var form = $('.login-modal form');
+form.submit(function(event) {
+  event.preventDefault();
+  $.post('/login', { 
+    username: $('.login-modal input[type=text]').val(),
+    password: $('.login-modal input[type=password]').val()
+  })
+      .done(function() {
+        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard';
+      })
+      .fail(function() {
+        form.shake();
+      });
+});
