@@ -27,9 +27,7 @@
                     .animate({ left: settings.distance }, (settings.duration / settings.shakes) / 2)
                     .animate({ left: 0 }, (settings.duration / settings.shakes) / 4);
             }
-
             $this.css('position', 'static');
-
         });
     };
 }(jQuery));
