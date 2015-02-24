@@ -57,8 +57,13 @@
         <h3>Build a writing habit</h3>
       </div>
 
-      <form id="signup" action="/signup"method="post">
+      <form autocomplete="off" id="signup" action="/signup"method="post">
 
+        <!-- For preventing ugly autofill -->
+        <input style="display:none" type="text" name="fakeusernameremembered"/>
+        <input style="display:none" type="password" name="fakepasswordremembered"/>
+        <!--- -->
+        
         <input type="text" placeholder="Username" name="username">
         <input type="password" placeholder="Password" name="password">
         <input type="hidden" id="timezone" name="timezone" value="">
