@@ -20,10 +20,10 @@ module.exports = function (app, passport){
     .post('/login', function(req, res, next) {
       passport.authenticate('login', function(err, user, info) {
         if (err) return next(error);
-        if (!user) return res.send(401);
+        if (!user) return res.status(401).end()
         req.login(user, function(err) {
           if (err) { return next(err); }
-          return res.send(200);
+          return res.status(200).end()
         });
       })(req, res, next);
     })
