@@ -210,7 +210,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 .close-modal {
   cursor: pointer;
   float: right;
-  font-family: Oswald, Helvetica, Arial, sans-serif;;
+  font-family: Oswald, Helvetica, Arial, sans-serif;
 }
 
 .login-modal button:hover {

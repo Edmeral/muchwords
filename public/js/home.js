@@ -37,7 +37,7 @@ $(function() {
 });
 
 /*
-* Handling Submit event
+* Handling Submit event (login)
 */
 var form = $('.login-modal form');
 form.submit(function(event) {
@@ -51,5 +51,23 @@ form.submit(function(event) {
       })
       .fail(function() {
         form.shake();
+      });
+});
+
+/*
+* Handling Submit event (signup)
+*/
+var signupForm = $('#signup');
+$('#signup').submit(function(event) {
+  event.preventDefault();
+  $.post('/signup', {
+    username: $('#signup input[type=text]')[1].value,
+    password: $('#signup input[type=password]')[1].value
+  })
+      .done(function() {
+        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard';
+      })
+      .fail(function() {
+        signupForm.shake();
       });
 });

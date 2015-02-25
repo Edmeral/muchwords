@@ -12,18 +12,23 @@ module.exports = function (app, passport){
          });
     })
 
-    .post('/signup', passport.authenticate('signup', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/',
-      failureFlash: true
-    }))
+    .post('/signup', function(req, res, next) {
+      passport.authenticate('signup', function(err, user, info) {
+        if (err) return next(error);
+        if (!user) return res.status(401).end('Cant login');
+        req.login(user, function(err) {
+          if (err) { return next(err); }
+          return res.status(200).end('Signed up');
+        });
+      })(req, res, next);
+    })
     .post('/login', function(req, res, next) {
       passport.authenticate('login', function(err, user, info) {
         if (err) return next(error);
-        if (!user) return res.status(401).end()
+        if (!user) return res.status(401).end();
         req.login(user, function(err) {
           if (err) { return next(err); }
-          return res.status(200).end()
+          return res.status(200).end();
         });
       })(req, res, next);
     })
