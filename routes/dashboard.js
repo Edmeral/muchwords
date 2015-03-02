@@ -143,10 +143,10 @@ module.exports = function(app) {
             message: message,
             email: email,
             timezone: timezone
-          })
+          });
         });
       }
-    })
+    });
   });
 };
 
