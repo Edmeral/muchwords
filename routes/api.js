@@ -13,7 +13,7 @@ module.exports = function(app) {
         .exec(function(err, posts) {
 
           if (err) console.log(err);
-          var calendar = [];
+          var calendar = {};
           var timezone = req.user.timezone;
           
           /* -Begin from this moment minus 365 days.
@@ -26,7 +26,7 @@ module.exports = function(app) {
           for (var i = 365; i >= 0; i--) {
 
             var newMoment = moment().subtract(i, 'days').tz(timezone);
-            var item = [newMoment.format('YYYY-MM-DD'), 0, ''];
+            var timestamp = newMoment.format('X');
 
             for (var j = 0, l = posts.length; j < l; j++) {
 
@@ -35,10 +35,9 @@ module.exports = function(app) {
               if (isSameDay(date, newMoment)) {
                 var wordsCount = posts[j].wordsCount;
                 var id = posts[j]._id;
-                item = [date.format('YYYY-MM-DD'), wordsCount, id];
+                calendar[timestamp] = wordsCount;
               }
             }
-            calendar.push(item);
           }
           res.json(calendar);
       });

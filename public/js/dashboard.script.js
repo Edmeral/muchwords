@@ -153,4 +153,37 @@ $(function() {
   // Adding to keyboard shortcut to save the post
   $('#content').bind('keydown', 'Ctrl+s', savePost);
   $(document).bind('keydown', 'Ctrl+s', savePost);
+
+  /*
+  * Cal-heatmap
+  */
+  var cal = new CalHeatMap();
+
+  // Get the next month of the previous year
+  var now = new Date();
+  var year = now.getFullYear() - 1;
+  var month = now.getMonth() + 1;
+  var day = now.getDate();
+  var start = new Date(year, month, day);
+
+  cal.init({
+    start: start,
+    itemName: ['word', 'words'],
+    itemSelector: '#cal-heatmap',
+    data: '/dashboard/calendar',
+    domain: 'month',
+    tooltip: true,
+    subDomainTitleFormat: {
+      empty: '0 words on {date}',
+      filled: '{count} {name} {connector} {date}'
+    },
+    legendColors: {
+      min: '#f1c40f',
+      max: '#d35400'
+    },
+    legend: [10, 50, 100, 200]
+  });
+
+  $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+  $('#cal-heatmap').css('margin', 'auto');
 });
