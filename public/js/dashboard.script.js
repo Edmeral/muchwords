@@ -173,6 +173,7 @@ $(function() {
     data: '/dashboard/calendar',
     domain: 'month',
     tooltip: true,
+    cellSize: 13,
     subDomainTitleFormat: {
       empty: '0 words on {date}',
       filled: '{count} {name} {connector} {date}'
@@ -181,9 +182,13 @@ $(function() {
       min: '#f1c40f',
       max: '#d35400'
     },
-    legend: [10, 50, 100, 200]
+    legend: [10, 50, 100, 200],
+    onComplete: function() {
+      $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+      $('#cal-heatmap').css('margin', 'auto');
+    }
   });
 
-  $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
-  $('#cal-heatmap').css('margin', 'auto');
+
+  
 });
