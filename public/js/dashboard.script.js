@@ -161,10 +161,7 @@ $(function() {
 
   // Get the next month of the previous year
   var now = new Date();
-  var year = now.getFullYear() - 1;
-  var month = now.getMonth() + 1;
-  var day = now.getDate();
-  var start = new Date(year, month, day);
+  var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
 
   cal.init({
     start: start,
