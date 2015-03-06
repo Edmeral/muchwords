@@ -254,6 +254,10 @@ a {
   color: grey;
 }
 
+/* cal-heatmap styles */
+#cal-heatmap {
+  margin-top: 40px !important;
+}
 /* view.ejs styles */
 
 #info * {

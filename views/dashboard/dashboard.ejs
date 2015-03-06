@@ -27,11 +27,9 @@
       <a class="logout" href="/logout">Log out</a>
     </div>
   </header>
-  
-  <br> <br> <br> <br>
-    <div id="cal-heatmap"></div>
+
+    <div id="cal-heatmap"><h4>Activity in the last year</h4></div>
     <div id="calendar">
-      <h4>Activity in the last 6 months</h4>
       <div id="calendar-grid">
         <div class="spinner">
           <div class="bounce1"></div>
@@ -95,11 +93,9 @@
     noPostToday: <%= noPostToday %>
   </p>
   
--->
 
 <%= activeDays %>
 <%= totalWords %>  
-
 
   <% if (content) {
     if (posts[posts.length -1 ].wordsCount >= 751) { %>
