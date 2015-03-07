@@ -183,6 +183,10 @@ $(function() {
     onComplete: function() {
       $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
       $('#cal-heatmap').css('margin', 'auto');
+    },
+    onClick: function(date, nb) {
+      if (nb !== null)
+        window.location.href += '/view/' + date;
     }
   });
 
