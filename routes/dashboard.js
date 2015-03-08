@@ -103,12 +103,18 @@ module.exports = function(app) {
     })
 
   // For displaying an individual post
-  .get('/dashboard/view/:id', isLoggedIn, function(req, res) {
-    Post.find({'_id': req.params.id, 'username': req.user.username}, function(err, post) {
+  .get('/dashboard/view/:timestamp', isLoggedIn, function(req, res) {
+    Post.find({
+      username: req.user.username,
+      date: { $gte: moment(req.params.timestamp).startOf('day').toDate(),
+              $lt: moment(req.params.timestamp).endOf('day').toDate()
+            }
+      }, function(err, post) {
 
       if (err) console.log(err);
 
-      if (post) {
+      if (post && post.length > 0) {
+        console.log(post);
         var content = post[0].content;
         var wordsCount = post[0].wordsCount + ' word' + (post[0].wordsCount == 1 ? '':'s');
         var date = moment(post[0].date).format('dddd, MMM Do YYYY');
