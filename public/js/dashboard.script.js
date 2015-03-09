@@ -185,8 +185,11 @@ $(function() {
       $('#cal-heatmap').css('margin', 'auto');
     },
     onClick: function(date, nb) {
+      console.log(date);
+      var timestamp = Date.parse(date);
+      console.log(timestamp);
       if (nb !== null)
-        window.location.href += '/view/' + date;
+        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard/view/' + date;
     }
   });
 
