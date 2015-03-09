@@ -106,15 +106,14 @@ module.exports = function(app) {
   .get('/dashboard/view/:timestamp', isLoggedIn, function(req, res) {
     Post.find({
       username: req.user.username,
-      date: { $gte: moment(req.params.timestamp).startOf('day').toDate(),
-              $lt: moment(req.params.timestamp).endOf('day').toDate()
+      date: { $gte: moment.unix(req.params.timestamp).startOf('day'),
+              $lt: moment.unix(req.params.timestamp).endOf('day')
             }
       }, function(err, post) {
 
       if (err) console.log(err);
 
       if (post && post.length > 0) {
-        console.log(post);
         var content = post[0].content;
         var wordsCount = post[0].wordsCount + ' word' + (post[0].wordsCount == 1 ? '':'s');
         var date = moment(post[0].date).format('dddd, MMM Do YYYY');
