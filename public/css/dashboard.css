@@ -257,6 +257,8 @@ a {
 /* cal-heatmap styles */
 #cal-heatmap {
   margin-top: 40px !important;
+  width: 950px;
+  margin: auto;
 }
 /* view.ejs styles */
 
