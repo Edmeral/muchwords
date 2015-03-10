@@ -106,8 +106,8 @@ module.exports = function(app) {
   .get('/dashboard/view/:timestamp', isLoggedIn, function(req, res) {
     Post.find({
       username: req.user.username,
-      date: { $gte: moment.unix(req.params.timestamp).startOf('day'),
-              $lt: moment.unix(req.params.timestamp).endOf('day')
+      date: { $gte: moment.unix(req.params.timestamp).tz(req.user.timezone).startOf('day'),
+              $lt: moment.unix(req.params.timestamp).tz(req.user.timezone).endOf('day')
             }
       }, function(err, post) {
 
