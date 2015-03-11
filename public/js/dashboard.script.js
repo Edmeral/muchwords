@@ -93,7 +93,7 @@ $(function() {
   //   var d2 = max / 2;
   //   var d3 = max - d1;
 
-  //   $('.spinner').hide();
+  //   
 
   //   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   //   for (var j in posts) {
@@ -166,6 +166,7 @@ $(function() {
       currentStreak = streaks[streaks.length - 2];
     var longestStreak = Math.max.apply(Math, streaks);
 
+    $('.spinner').hide();
     console.log(longestStreak, currentStreak, totalWords);
 
     /*
