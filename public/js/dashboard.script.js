@@ -167,15 +167,17 @@ $(function() {
     var longestStreak = Math.max.apply(Math, streaks);
 
     $('.spinner').hide();
-    console.log(longestStreak, currentStreak, totalWords);
+    var stats = [longestStreak, currentStreak, totalWords];
 
     /*
     * Cal-heatmap
     */
     var cal = new CalHeatMap();
+
     // Get the next month of the previous year
     var now = new Date();
     var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
+
     cal.init({
       start: start,
       itemName: ['word', 'words'],
@@ -206,14 +208,14 @@ $(function() {
         }
         return newData;
       },
-      // onComplete: function() {
-      //   $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
-      //   $('#cal-heatmap').css('margin', 'auto');
-      // }
+      onComplete: function() {
+        // $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+        // $('#cal-heatmap').css('margin', 'auto');
+        $('#cal-stats').css('display', 'block');
+        $('#cal-stats .box strong').each(function(index) {
+          $(this).text(stats[index]);
+        });
+      }
     });
-  });
-  
-
-
-  
+  }); 
 });

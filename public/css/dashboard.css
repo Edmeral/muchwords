@@ -260,6 +260,32 @@ a {
   width: 950px;
   margin: auto;
 }
+#cal-stats {
+  width: 950px;
+  margin: auto;
+  text-align: center;
+  display: none;
+}
+#cal-stats .box {
+  display: inline-block;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+#cal-stats span {
+  display: block;
+  color: #5e5e5e;
+}
+#cal-stats strong {
+  margin-top: 7px;
+  margin-bottom: 7px;
+  font-size: 23px;
+  display: block;
+}
+#cal-stats small {
+  display: block;
+  color: grey;
+}
+
 /* view.ejs styles */
 
 #info * {
