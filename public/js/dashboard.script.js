@@ -81,115 +81,137 @@ $(function() {
    *  Drawing the words calendar
   */
 
-  $.getJSON('/dashboard/calendar', function(posts) {
-    // Get the max number of words
-    var max = 0;
-    for (var i in posts) {
-      if (posts[i][1] > max)
-        max = posts[i][1];
-    }
+  // $.getJSON('/dashboard/calendar', function(posts) {
+  //   // Get the max number of words
+  //   var max = 0;
+  //   for (var i in posts) {
+  //     if (posts[i][1] > max)
+  //       max = posts[i][1];
+  //   }
 
-    var d1 = max / 4;
-    var d2 = max / 2;
-    var d3 = max - d1;
+  //   var d1 = max / 4;
+  //   var d2 = max / 2;
+  //   var d3 = max - d1;
 
-    $('.spinner').hide();
+  //   $('.spinner').hide();
 
-    var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    for (var j in posts) {
-      var quartile = document.createElement('a');
-      var wordsCount = posts[j][1];
-      var link = posts[j][2];
-      var date = new Date(posts[j][0]);
-      var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
-      var cssClass;
-      var words = 'words';
+  //   var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  //   for (var j in posts) {
+  //     var quartile = document.createElement('a');
+  //     var wordsCount = posts[j][1];
+  //     var link = posts[j][2];
+  //     var date = new Date(posts[j][0]);
+  //     var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+  //     var cssClass;
+  //     var words = 'words';
 
-      if (wordsCount == 1) words = 'word';
-      var title = '<strong>' + wordsCount + ' ' + words + '</strong> on ' + dateStr;
-      if (wordsCount === 0) 
-        title = '<strong>No words</strong> on ' + dateStr;
+  //     if (wordsCount == 1) words = 'word';
+  //     var title = '<strong>' + wordsCount + ' ' + words + '</strong> on ' + dateStr;
+  //     if (wordsCount === 0) 
+  //       title = '<strong>No words</strong> on ' + dateStr;
 
-      $(quartile).attr('title', title);
-      if (link && wordsCount) $(quartile).attr('href', '/dashboard/view/' + link);
+  //     $(quartile).attr('title', title);
+  //     if (link && wordsCount) $(quartile).attr('href', '/dashboard/view/' + link);
 
-      if (wordsCount === 0) cssClass = 'q0';
-      else if (wordsCount < d1) cssClass = 'q1';
-      else if (wordsCount >= d1 && wordsCount < d2) cssClass = 'q2';
-      else if (wordsCount >= d2 && wordsCount < d3) cssClass = 'q3';
-      else if (wordsCount >= d3) cssClass = 'q4';
+  //     if (wordsCount === 0) cssClass = 'q0';
+  //     else if (wordsCount < d1) cssClass = 'q1';
+  //     else if (wordsCount >= d1 && wordsCount < d2) cssClass = 'q2';
+  //     else if (wordsCount >= d2 && wordsCount < d3) cssClass = 'q3';
+  //     else if (wordsCount >= d3) cssClass = 'q4';
 
-      $(quartile).addClass('quartile ' + cssClass);
+  //     $(quartile).addClass('quartile ' + cssClass);
 
-      $(quartile).tipsy({
-        gravity: 's',
-        opacity: 0.65,
-        html: true
-      });
+  //     $(quartile).tipsy({
+  //       gravity: 's',
+  //       opacity: 0.65,
+  //       html: true
+  //     });
 
-      $('#calendar-grid').append(quartile);
-    }
+  //     $('#calendar-grid').append(quartile);
+  //   }
 
-    // Getting the longest and current streaks + total days of writing.   
-    var streaks = [];
-    var tmpStreak = 0;
-    for (i = posts.length - 1; i >= 0; i--) {
-      if (posts[i][1]) tmpStreak++;
-      else {
-        streaks.push(tmpStreak);
-        tmpStreak = 0;
-      }
-    }
-    var currentStreak = streaks[0];
-    // If the user hasn't written anything today, the current strak
-    // shoudln't be equal to 0 instead it should equal the the previous streak
-    if (posts[posts.length - 1][1] === 0) currentStreak = streaks[1];
-    var longestStreak = Math.max.apply(Math, streaks);
-    $('.current-streak').text('Current streak: ' + currentStreak + (currentStreak == 1 ? ' day.':' days.'));
-    $('.longest-streak').text('Longest streak: ' + longestStreak + (longestStreak == 1 ? ' day.':' days.'));
-    $('.total-words').text('Total words written: ' + totalWords + '.');
-  });
+    
+  //   $('.current-streak').text('Current streak: ' + currentStreak + (currentStreak == 1 ? ' day.':' days.'));
+  //   $('.longest-streak').text('Longest streak: ' + longestStreak + (longestStreak == 1 ? ' day.':' days.'));
+  //   $('.total-words').text('Total words written: ' + totalWords + '.');
+  // });
   
   // Adding to keyboard shortcut to save the post
   $('#content').bind('keydown', 'Ctrl+s', savePost);
   $(document).bind('keydown', 'Ctrl+s', savePost);
 
-  /*
-  * Cal-heatmap
-  */
-  var cal = new CalHeatMap();
+  
+  $.getJSON('/dashboard/calendar', function(calendar) {
 
-  // Get the next month of the previous year
-  var now = new Date();
-  var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
-
-  cal.init({
-    start: start,
-    itemName: ['word', 'words'],
-    itemSelector: '#cal-heatmap',
-    data: '/dashboard/calendar',
-    domain: 'month',
-    tooltip: true,
-    cellSize: 13,
-    subDomainTitleFormat: {
-      empty: '0 words on {date}',
-      filled: '{count} {name} {connector} {date}'
-    },
-    legendColors: {
-      min: '#f1c40f',
-      max: '#d35400'
-    },
-    legend: [10, 50, 100, 200],
-    onComplete: function() {
-      $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
-      $('#cal-heatmap').css('margin', 'auto');
-    },
-    onClick: function(date, nb) {
-      var timestamp = date.getTime() / 1000;
-      if (nb !== null)
-        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard/view/' + timestamp;
+    // Getting the longest and current streaks + total days of writing.   
+    var streaks = [];
+    var tmpStreak = 0;
+    var totalWords = 0;
+    for (var i in calendar) {
+      if (calendar[i] !== 0) {
+        tmpStreak++;
+        totalWords += calendar[i];
+      }
+      else {
+        streaks.push(tmpStreak);
+        tmpStreak = 0;
+      }
     }
+    streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
+
+    var currentStreak = streaks[streaks.length - 1];
+    // If the user hasn't written anything today, the current streak
+    // shoudln't be equal to 0 instead it should equal the the previous streak
+    if (calendar[Object.keys(calendar).sort().pop()] === 0) 
+      currentStreak = streaks[streaks.length - 2];
+    var longestStreak = Math.max.apply(Math, streaks);
+
+    console.log(longestStreak, currentStreak, totalWords);
+
+    /*
+    * Cal-heatmap
+    */
+    var cal = new CalHeatMap();
+    // Get the next month of the previous year
+    var now = new Date();
+    var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
+    cal.init({
+      start: start,
+      itemName: ['word', 'words'],
+      itemSelector: '#cal-heatmap',
+      data: calendar,
+      domain: 'month',
+      tooltip: true,
+      cellSize: 13,
+      subDomainTitleFormat: {
+        empty: '0 words on {date}',
+        filled: '{count} {name} {connector} {date}'
+      },
+      legendColors: {
+        min: '#f1c40f',
+        max: '#d35400'
+      },
+      legend: [10, 50, 100, 200],
+      onClick: function(date, nb) {
+        var timestamp = date.getTime() / 1000;
+        if (nb !== null)
+          window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard/view/' + timestamp;
+      },
+      afterLoadData: function(data) {
+        var newData = {};
+        for (var date in data) {
+          if (data[date] !== 0) 
+            newData[date] = data[date];
+        }
+        return newData;
+      },
+      // onComplete: function() {
+      //   $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+      //   $('#cal-heatmap').css('margin', 'auto');
+      // }
+    });
   });
+  
 
 
   

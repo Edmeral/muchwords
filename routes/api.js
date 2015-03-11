@@ -27,7 +27,8 @@ module.exports = function(app) {
 
             var newMoment = moment().subtract(i, 'days').tz(timezone);
             var timestamp = newMoment.format('X');
-
+            calendar[timestamp] = 0;
+            
             for (var j = 0, l = posts.length; j < l; j++) {
 
               var date = moment(posts[j].date).tz(timezone);
