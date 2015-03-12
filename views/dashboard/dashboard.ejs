@@ -22,7 +22,7 @@
     <a id="header-dashboard" href="/dashboard"></a>
     <!-- <div id="header-hello"><span class="hello">Hello</span> <%= user.username %>.</div> -->
     <div id="header-navigation">
-      <a class="archives" href="#">Archives</a>
+      <a class="archives" href="/dashboard/archives">Archives</a>
       <a class="settings" href="/dashboard/settings">Settings</a>
       <a class="logout" href="/logout">Log out</a>
     </div>
@@ -61,7 +61,7 @@
 
     <form action="dashboard" method="post">
       <textarea name="content" id="content" placeholder="Write here"><%= content %></textarea>
-      
+
       <div class="circular-bar">
         <input type="text" class="dial" data-fgColor="#068894" data-width="30" data-height="30" >
         <p class="circular-bar-counter">0 words</p>

@@ -152,6 +152,10 @@ module.exports = function(app) {
         });
       }
     });
+  })
+
+  .get('/dashboard/archives', isLoggedIn, function(req, res) {
+    res.render('dashboard/archives.ejs');
   });
 };
 
