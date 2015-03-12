@@ -181,7 +181,7 @@ $(function() {
     cal.init({
       start: start,
       itemName: ['word', 'words'],
-      itemSelector: '#cal-heatmap',
+      itemSelector: '.cal-heatmap',
       data: calendar,
       domain: 'month',
       tooltip: true,
@@ -209,8 +209,8 @@ $(function() {
         return newData;
       },
       onComplete: function() {
-        // $('#cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
-        // $('#cal-heatmap').css('margin', 'auto');
+        // $('.cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+        // $('.cal-heatmap').css('margin', 'auto');
         $('#cal-stats').css('display', 'block');
         $('#cal-stats .box strong').each(function(index) {
           $(this).text(stats[index]);
