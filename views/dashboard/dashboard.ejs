@@ -56,83 +56,22 @@
       </div>
       <hr>
     </div>
-   
 
- <br> <br> <br> <br>
- 
-  <div class="account-summary">
-    <h3>Hello <%= user.username %>.</h3>
-   
-    <% if (noPosts) { %>
-      <!-- Display a welcome message when nothing was written ever -->
-    <% }
-      else { %>
-        <p> You have written <%= totalWords %> 
-            <% if (totalWords > 1) { %>words<% } else { %>word<% } %>
-            in the span of <%= posts.length %>
-            <% if (posts.length > 1) { %>days<% } else { %>day<% } %>.
-
-            <% if (noPostToday) { %> 
-                You haven't wrote anything for today!
-             <% } 
-
-              else { %>
-                You have written <%= posts[posts.length - 1].wordsCount %>/750 words today.
-              <% } %> 
-   
-        </p>
-      <% } %>
-     
-  </div>
-
-
-  <p>
-    user: <%= user %>
-  </p>
-  <p>
-    posts: <%= posts %>
-  </p>
-  <p>
-    noPosts: <%= noPosts %>
-  </p>
-  <p>
-    noPostToday: <%= noPostToday %>
-  </p>
-  
-
-<%= activeDays %>
-<%= totalWords %>  
-
-  <% if (content) {
-    if (posts[posts.length -1 ].wordsCount >= 751) { %>
-      <div class="alert alert-success">Nice! You've already completed your 751 words for this day, but you can always add more :)</div>
-    <%}
-  }%>
   <div class="container">
-    
 
     <form action="dashboard" method="post">
-      
       <textarea name="content" id="content" placeholder="Write here"><%= content %></textarea>
-
-      
-
       
       <div class="circular-bar">
         <input type="text" class="dial" data-fgColor="#068894" data-width="30" data-height="30" >
         <p class="circular-bar-counter">0 words</p>
       </div>
+
       <div id="submit">Draft</div>
-      
     </form>
 
-    
   </div>
-  
-   <!-- Injecting the Number of days the user has written in to use in frontend JS -->
-    <script>
-      var totalWords = <%= totalWords %>;
-    </script>
+
   <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
   <script src="/js/cal-heatmap.min.js"></script>
   <script src="/js/jquery.min.js"></script>
