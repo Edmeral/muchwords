@@ -28,7 +28,7 @@ module.exports = function(app) {
             var newMoment = moment().subtract(i, 'days').tz(timezone);
             var timestamp = newMoment.format('X');
             calendar[timestamp] = 0;
-            
+
             for (var j = 0, l = posts.length; j < l; j++) {
 
               var date = moment(posts[j].date).tz(timezone);
@@ -45,18 +45,21 @@ module.exports = function(app) {
 
     })
   
-  // Getting a json file for all posts
+  // Getting a json file for all posts sorted by year
   .get('/dashboard/posts', isLoggedIn, function(req, res) {
     Post.find({ 'username': req.user.username }, function(err, posts) {
       if (err) console.log(err);
 
-      var results = [];
+      var results = {};
       var post = {};
 
       for (var i = 0; i < posts.length; i++) {
-        post.id = posts[i]._id;
-        post.date = posts[i].date;
-        results.push(post);
+        var newMoment = moment(posts[i].date).tz(req.user.timezone);
+        var timestamp = newMoment.format('X');
+        var year = newMoment.year();
+        if (!(year in results))
+          results[year] = {};
+        results[year][timestamp] = posts[i].wordsCount;
       }
       res.json(results);
     });
