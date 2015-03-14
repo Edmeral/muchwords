@@ -54,6 +54,7 @@ module.exports = function(app) {
       var post = {};
 
       for (var i = 0; i < posts.length; i++) {
+        if (posts[i].wordsCount === 0) continue;
         var newMoment = moment(posts[i].date).tz(req.user.timezone);
         var timestamp = newMoment.format('X');
         var year = newMoment.year();
