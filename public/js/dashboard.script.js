@@ -9,13 +9,15 @@ $(function() {
   };
 
   function savePost() {
-    changed = false;
     submit.text('Saving..');
     $.post('/dashboard', $('form').serialize(), function() {
-      submit.text('Saved!');
-      setTimeout(function() {
-        submit.text('Draft');
-      }, 2000);
+      changed = false;
+      if(!changed) {
+        submit.text('Saved!');
+        setTimeout(function() {
+          submit.text('Draft');
+        }, 2000);
+      }
     });
 
     return false;
