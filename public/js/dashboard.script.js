@@ -9,9 +9,9 @@ $(function() {
   };
 
   function savePost() {
+    changed = false;
     submit.text('Saving..');
     $.post('/dashboard', $('form').serialize(), function() {
-      changed = false;
       if(!changed) {
         submit.text('Saved!');
         setTimeout(function() {
