@@ -30,27 +30,22 @@ module.exports = function(app) {
       if (content === '') wordsCount = 0;
       
       Post
-        .find({ 'username': req.user.username })
-        .sort({ 'date': 1 })
-        .exec(function(err, posts) {
+        .findOne({ 'username': req.user.username })
+        .sort({ date: -1 })
+        .exec(function(err, post) {
 
-        if (err) console.log(err);
+          if (err) console.log(err);
 
-        else {
           // Checking if there is already a post that was written today we don't need to create
           // a new one, we just update it
-          if (posts.length > 0 && isSameDay(moment(posts[posts.length - 1].date), moment(), req.user.timezone)) {
-            var id = posts[posts.length - 1]._id;
+          if (post !== null && isSameDay(moment(), moment(post.date), req.user.timezone)) {
 
-            Post.findById(id, function(err, post) {
-              post.content = content;
-              post.wordsCount = wordsCount;
+            post.content = content;
+            post.wordsCount = wordsCount;
 
-              post.save(function(err) {
-                if (err) console.log(err);
-              });
+            post.save(function(err) {
+              if (err) console.log(err);
             });
-
           }
 
           else {
@@ -64,8 +59,8 @@ module.exports = function(app) {
               if (err) console.log(err);
             });
           }
-        }
-      });
+        });
+        
       res.redirect('/');
     })
 
