@@ -6,52 +6,19 @@ module.exports = function(app) {
   app
     .get('/dashboard', isLoggedIn, function(req, res) {
 
-        Post.find({ 'username': req.user.username})
-          .sort({ date: 1 })
-          .exec(function(err, posts) {
+        Post.findOne({ 'username': req.user.username})
+          .sort({ date: -1 })
+          .exec(function(err, post) {
 
-            if (err)
-              console.log(err);
-            
-            var totalWords = 0;
-            var activeDays = 0;
-
-            for (var i = 0, l = posts.length; i < l; i++) {
-              totalWords += posts[i].wordsCount;
-
-              if (posts[i].content !== '')
-                activeDays++;
-            }
-
-            var noPosts = false; 
-            var noPostToday = false;
-
-            var length = posts.length;
-            if (length === 0) {
-              noPosts = true;
-              noPostToday = true;
-            }
-
-            else {
-              // if the latest post date field and today's date are not equal
-              // then the user hasn't yet written anything today
-              if (!isSameDay(moment(), moment(posts[length - 1].date), req.user.timezone))  
-                noPostToday = true;                             
-            } 
+            if (err) console.log(err);
 
             var content = '';
-            if(!noPostToday) 
-              content = posts[length - 1].content;
+            // if the latest post date field and today's date are equal
+            // then the user has already written something today
+            if (post !== null && isSameDay(moment(), moment(post.date), req.user.timezone)) 
+              content = post.content;
               
-            res.render('dashboard/dashboard.ejs', { 
-              user: req.user, 
-              posts: posts,
-              noPosts: noPosts,
-              noPostToday: noPostToday,
-              totalWords: totalWords,
-              content: content,
-              activeDays: activeDays
-            });
+            res.render('dashboard/dashboard.ejs', { content: content });
           });
       })
 
