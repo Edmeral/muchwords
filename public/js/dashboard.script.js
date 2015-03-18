@@ -155,6 +155,9 @@ $(function() {
       $('#cal-stats').css('display', 'block');
       $('#cal-stats .box strong').each(function(index) {
         $(this).text(stats[index]);
+        // Displaying "1 day" instead of "1 days"
+        if (index == 1 && stats[index] == 1) 
+          $(this).next().text('day');
       });
     }
   });
