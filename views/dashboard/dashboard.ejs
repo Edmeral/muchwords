@@ -69,7 +69,12 @@
     </form>
 
   </div>
-
+  
+  <!-- Harcoding the calendar json object for much speed -->
+  <script>
+   var calendar = <%- calendar %>; 
+  </script>
+  
   <script type="text/javascript" src="//d3js.org/d3.v3.min.js"></script>
   <script src="/js/cal-heatmap.min.js"></script>
   <script src="/js/jquery.min.js"></script>

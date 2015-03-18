@@ -83,81 +83,79 @@ $(function() {
   /*
    * Drawing the calendar
   */
-  $.getJSON('/dashboard/calendar', function(calendar) {
 
-    // Getting the longest and current streaks + total days of writing.   
-    var streaks = [];
-    var tmpStreak = 0;
-    var totalWords = 0;
-    for (var i in calendar) {
-      if (calendar[i] !== 0) {
-        tmpStreak++;
-        totalWords += calendar[i];
-      }
-      else {
-        streaks.push(tmpStreak);
-        tmpStreak = 0;
-      }
+  // Getting the longest and current streaks + total days of writing.   
+  var streaks = [];
+  var tmpStreak = 0;
+  var totalWords = 0;
+  for (var i in calendar) {
+    if (calendar[i] !== 0) {
+      tmpStreak++;
+      totalWords += calendar[i];
     }
-    streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
+    else {
+      streaks.push(tmpStreak);
+      tmpStreak = 0;
+    }
+  }
+  streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
 
-    var currentStreak = streaks[streaks.length - 1];
-    // If the user hasn't written anything today, the current streak
-    // shoudln't be equal to 0 instead it should equal the the previous streak
-    if (calendar[Object.keys(calendar).sort().pop()] === 0) 
-      currentStreak = streaks[streaks.length - 2];
-    var longestStreak = Math.max.apply(Math, streaks);
+  var currentStreak = streaks[streaks.length - 1];
+  // If the user hasn't written anything today, the current streak
+  // shoudln't be equal to 0 instead it should equal the the previous streak
+  if (calendar[Object.keys(calendar).sort().pop()] === 0) 
+    currentStreak = streaks[streaks.length - 2];
+  var longestStreak = Math.max.apply(Math, streaks);
 
-    $('.spinner').hide();
-    var stats = [longestStreak, currentStreak, totalWords];
+  $('.spinner').hide();
+  var stats = [longestStreak, currentStreak, totalWords];
 
-    /*
-    * Cal-heatmap
-    */
-    var cal = new CalHeatMap();
+  /*
+  * Cal-heatmap
+  */
+  var cal = new CalHeatMap();
 
-    // Get the next month of the previous year
-    var now = new Date();
-    var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
+  // Get the next month of the previous year
+  var now = new Date();
+  var start = new Date(now.getFullYear() - 1, now.getMonth() + 1, now.getDate());
 
-    cal.init({
-      start: start,
-      itemName: ['word', 'words'],
-      itemSelector: '.cal-heatmap',
-      data: calendar,
-      domain: 'month',
-      tooltip: true,
-      cellSize: 13,
-      subDomainTitleFormat: {
-        empty: '0 words on {date}',
-        filled: '{count} {name} {connector} {date}'
-      },
-      legendColors: {
-        min: '#f1c40f',
-        max: '#d35400'
-      },
-      legend: [10, 50, 100, 200],
-      onClick: function(date, nb) {
-        var timestamp = date.getTime() / 1000;
-        if (nb !== null)
-          window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard/view/' + timestamp;
-      },
-      afterLoadData: function(data) {
-        var newData = {};
-        for (var date in data) {
-          if (data[date] !== 0) 
-            newData[date] = data[date];
-        }
-        return newData;
-      },
-      onComplete: function() {
-        // $('.cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
-        // $('.cal-heatmap').css('margin', 'auto');
-        $('#cal-stats').css('display', 'block');
-        $('#cal-stats .box strong').each(function(index) {
-          $(this).text(stats[index]);
-        });
+  cal.init({
+    start: start,
+    itemName: ['word', 'words'],
+    itemSelector: '.cal-heatmap',
+    data: calendar,
+    domain: 'month',
+    tooltip: true,
+    cellSize: 13,
+    subDomainTitleFormat: {
+      empty: '0 words on {date}',
+      filled: '{count} {name} {connector} {date}'
+    },
+    legendColors: {
+      min: '#f1c40f',
+      max: '#d35400'
+    },
+    legend: [10, 50, 100, 200],
+    onClick: function(date, nb) {
+      var timestamp = date.getTime() / 1000;
+      if (nb !== null)
+        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard/view/' + timestamp;
+    },
+    afterLoadData: function(data) {
+      var newData = {};
+      for (var date in data) {
+        if (data[date] !== 0) 
+          newData[date] = data[date];
       }
-    });
-  }); 
+      return newData;
+    },
+    onComplete: function() {
+      // $('.cal-heatmap').css('width', $('.cal-heatmap-container').width() + 'px');
+      // $('.cal-heatmap').css('margin', 'auto');
+      $('#cal-stats').css('display', 'block');
+      $('#cal-stats .box strong').each(function(index) {
+        $(this).text(stats[index]);
+      });
+    }
+  });
 });

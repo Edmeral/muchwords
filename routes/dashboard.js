@@ -1,10 +1,11 @@
 var Post = require('../models/post');
 var User = require('../models/user');
 var moment = require('moment-timezone');
+var calendarHandler = require('../routes/api').calendarHandler;
 
 module.exports = function(app) {
   app
-    .get('/dashboard', isLoggedIn, function(req, res) {
+    .get('/dashboard', isLoggedIn, calendarHandler, function(req, res) {
 
         Post.findOne({ 'username': req.user.username})
           .sort({ date: -1 })
@@ -17,8 +18,11 @@ module.exports = function(app) {
             // then the user has already written something today
             if (post !== null && isSameDay(moment(), moment(post.date), req.user.timezone)) 
               content = post.content;
-              
-            res.render('dashboard/dashboard.ejs', { content: content });
+            
+            res.render('dashboard/dashboard.ejs', { 
+              content: content,
+              calendar: JSON.stringify(req.calendar)
+            });
           });
       })
 
