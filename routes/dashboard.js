@@ -60,13 +60,13 @@ module.exports = function(app) {
             });
           }
         });
-        
+
       res.redirect('/');
     })
 
   // For displaying an individual post
   .get('/dashboard/view/:timestamp', isLoggedIn, function(req, res) {
-    Post.find({
+    Post.findOne({
       username: req.user.username,
       date: { $gte: moment.unix(req.params.timestamp).tz(req.user.timezone).startOf('day'),
               $lt: moment.unix(req.params.timestamp).tz(req.user.timezone).endOf('day')
@@ -75,10 +75,10 @@ module.exports = function(app) {
 
       if (err) console.log(err);
 
-      if (post && post.length > 0) {
-        var content = post[0].content;
-        var wordsCount = post[0].wordsCount + ' word' + (post[0].wordsCount == 1 ? '':'s');
-        var date = moment(post[0].date).format('dddd, MMM Do YYYY');
+      if (post !== null) {
+        var content = post.content;
+        var wordsCount = post.wordsCount + ' word' + (post.wordsCount == 1 ? '':'s');
+        var date = moment(post.date).format('dddd, MMM Do YYYY');
         res.render('dashboard/view.ejs', { content: content, date: date, wordsCount: wordsCount });
       }
       else 
