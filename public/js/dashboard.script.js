@@ -101,11 +101,12 @@ $(function() {
   var totalWords = calendar[timestamps[0]];
 
   for (var i = 1; i < timestamps.length; i++) {
+    totalWords += calendar[timestamps[i]];
     var date = new Date(timestamps[i] * 1000);
     console.log(tmpDate.getDate(), date.getDate());
     if (isTheDayAfter(tmpDate, date)) {
       tmpStreak++;
-      totalWords += calendar[timestamps[i]];
+      tmpDate = date;
     }
     else {
       tmpDate = date;
