@@ -84,27 +84,45 @@ $(function() {
    * Drawing the calendar
   */
 
-  // Getting the longest and current streaks + total days of writing.   
+  // Getting the longest and current streaks + total days of writing.
+  function isTheDayAfter(date1, date2) {
+    return (date1.getDate() + 1 == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear());
+  }
+
+  function isTheSameDay(date1, date2) {
+    return (date1.getDate() == date2.getDate() && date1.getMonth() == date2.getMonth() && date1.getFullYear() == date2.getFullYear());
+  }
+
+  var timestamps = Object.keys(calendar);
   var streaks = [];
-  var tmpStreak = 0;
-  var totalWords = 0;
-  for (var i in calendar) {
-    if (calendar[i] !== 0) {
+  var tmpStreak = 1;
+
+  var tmpDate = new Date(timestamps[0] * 1000);
+  var totalWords = calendar[timestamps[0]];
+
+  for (var i = 1; i < timestamps.length; i++) {
+    var date = new Date(timestamps[i] * 1000);
+    console.log(tmpDate.getDate(), date.getDate());
+    if (isTheDayAfter(tmpDate, date)) {
       tmpStreak++;
-      totalWords += calendar[i];
+      totalWords += calendar[timestamps[i]];
     }
     else {
+      tmpDate = date;
       streaks.push(tmpStreak);
-      tmpStreak = 0;
+      tmpStreak = 1;
     }
   }
   streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
 
-  var currentStreak = streaks[streaks.length - 1];
-  // If the user hasn't written anything today, the current streak
-  // shoudln't be equal to 0 instead it should equal the the previous streak
-  if (calendar[Object.keys(calendar).sort().pop()] === 0) 
-    currentStreak = streaks[streaks.length - 2];
+  var lastDate = new Date(timestamps[timestamps.length - 1] * 1000);
+  var today = new Date();
+  var currentStreak = 0;
+  // If the user wrote today or hasn't written anything today, but wrote something the day before
+  // the current streak shoudln't be equal to 0 instead it should equal the last streak
+  if (isTheSameDay(lastDate, today) || isTheDayAfter(lastDate, today))
+    currentStreak = streaks[streaks.length - 1];
+  
   var longestStreak = Math.max.apply(Math, streaks);
 
   $('.spinner').hide();
