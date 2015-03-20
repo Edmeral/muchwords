@@ -96,24 +96,23 @@ $(function() {
   var timestamps = Object.keys(calendar);
   var streaks = [];
   var tmpStreak = 1;
-
   var tmpDate = new Date(timestamps[0] * 1000);
   var totalWords = calendar[timestamps[0]];
 
   for (var i = 1; i < timestamps.length; i++) {
+
     totalWords += calendar[timestamps[i]];
     var date = new Date(timestamps[i] * 1000);
-    console.log(tmpDate.getDate(), date.getDate());
-    if (isTheDayAfter(tmpDate, date)) {
+
+    if (isTheDayAfter(tmpDate, date)) 
       tmpStreak++;
-      tmpDate = date;
-    }
     else {
-      tmpDate = date;
       streaks.push(tmpStreak);
       tmpStreak = 1;
     }
+    tmpDate = date;
   }
+  
   streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
 
   var lastDate = new Date(timestamps[timestamps.length - 1] * 1000);
