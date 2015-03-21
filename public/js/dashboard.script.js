@@ -112,7 +112,7 @@ $(function() {
     }
     tmpDate = date;
   }
-  
+
   streaks.push(tmpStreak); // Adding the last streak because it's not added in the loop
 
   var lastDate = new Date(timestamps[timestamps.length - 1] * 1000);

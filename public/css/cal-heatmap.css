@@ -36,9 +36,9 @@
 	pointer-events: none
 }
 
-.cal-heatmap-container .hover_cursor:hover {
+/*.cal-heatmap-container .hover_cursor:hover {
 	cursor: pointer
-}
+}*/
 
 .cal-heatmap-container .qi {
 	background-color: #999;
@@ -142,4 +142,8 @@ Remove comment to apply this style to date with value equal to 0
 	margin-left: -6px;
     border-width: 6px 6px 0;
     border-top-color: #222;
+}
+
+.r1, .r2, .r3, .r4, .r5 {
+	cursor: pointer;
 }
