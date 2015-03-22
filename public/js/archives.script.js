@@ -7,13 +7,16 @@ function clickHandler(date, nb) {
 $(function() {
   $.getJSON('/dashboard/posts', function(posts) {
     for (var year in posts) {
+      var calContainer = $(document.createElement('div'));
       var calDiv = $(document.createElement('div'));
       var title = $(document.createElement('h4'));
       title.text(year);
       calDiv.addClass('cal-heatmap year' + year);
       calDiv.append(title);
       calDiv.append(document.createElement('hr'));
-      $('body').append(calDiv);
+      calContainer.addClass('cal-container');
+      calContainer.append(calDiv);
+      $('body').append(calContainer);
 
       var cal = new CalHeatMap();
       var start = new Date(year);
