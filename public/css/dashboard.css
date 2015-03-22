@@ -256,7 +256,7 @@ a {
 }
 
 /* cal-heatmap styles */
-.cal-heatmap {
+.cal-container {
   margin-top: 40px !important;
   width: 950px;
   margin: auto;
