@@ -12,8 +12,8 @@ $(function() {
       var title = $(document.createElement('h4'));
       title.text(year);
       calDiv.addClass('cal-heatmap year' + year);
-      calDiv.append(title);
-      calDiv.append(document.createElement('hr'));
+      calContainer.append(title);
+      calContainer.append(document.createElement('hr'));
       calContainer.addClass('cal-container');
       calContainer.append(calDiv);
       $('body').append(calContainer);
