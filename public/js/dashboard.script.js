@@ -128,6 +128,9 @@ $(function() {
   $('.spinner').hide();
   var stats = [longestStreak, currentStreak, totalWords];
 
+  if ($.isEmptyObject(calendar))
+    stats = [0, 0, 0];
+
   /*
   * Cal-heatmap
   */
