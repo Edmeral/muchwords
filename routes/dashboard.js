@@ -19,9 +19,14 @@ module.exports = function(app) {
             if (post !== null && isSameDay(moment(), moment(post.date), req.user.timezone)) 
               content = post.content;
             
+            var tour = false;
+            if (req.query.tour == 'true')
+              tour  = true;
+
             res.render('dashboard/dashboard.ejs', { 
               content: content,
-              calendar: JSON.stringify(req.calendar)
+              calendar: JSON.stringify(req.calendar),
+              tour: tour
             });
           });
       })

@@ -65,7 +65,7 @@ $('#signup').submit(function(event) {
     password: $('#signup input[type=password]')[1].value
   })
       .done(function() {
-        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard';
+        window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard?tour=true';
       })
       .fail(function() {
         signupForm.shake();
