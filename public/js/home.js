@@ -62,7 +62,8 @@ $('#signup').submit(function(event) {
   event.preventDefault();
   $.post('/signup', {
     username: $('#signup input[type=text]')[1].value,
-    password: $('#signup input[type=password]')[1].value
+    password: $('#signup input[type=password]')[1].value,
+    timezone: $('#timezone').val()
   })
       .done(function() {
         window.location.href = window.location.protocol + '//' + window.location.host + '/dashboard?tour=true';
