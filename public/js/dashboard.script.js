@@ -47,11 +47,6 @@ $(function() {
   var content = $('#content');
   content.autosize();
 
-
- // content.one('keyup', function() {
- //   $('body').scrollTo('#content', { duration: 'slow', offset: -50 });
- //  });
-
   /**
    *  Manging the state of the progress bar on top
   */
