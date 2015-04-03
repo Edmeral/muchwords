@@ -222,11 +222,25 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 */
 
 footer {
-  background-color: #fafafa;
-  border-top: 1px solid rgba(164, 105, 39, 0.2);
+  border-top: 1px solid #e9eff2;
   width: 100%;
   float: right;
   height: 70px;
   margin-top: 50px;
   color: grey;
+  padding-right: 17.666666667%;
+  line-height: 30px;
+}
+
+footer p {
+  float: right;
+  color: inherit;
+}
+footer p a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: bold;
+}
+footer p a:hover {
+  color: #333333;
 }
