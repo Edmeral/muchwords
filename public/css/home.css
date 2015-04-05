@@ -244,3 +244,8 @@ footer p a {
 footer p a:hover {
   color: #403e3e;
 }
+
+footer .github {
+  float: left;
+  color: inherit;
+}
