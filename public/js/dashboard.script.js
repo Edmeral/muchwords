@@ -177,4 +177,10 @@ $(function() {
       });
     }
   });
+  
+  if (typeof Shepherd == 'undefined') 
+    console.log('tour is off');
+  else 
+    console.log('tour is on');
+  
 });
