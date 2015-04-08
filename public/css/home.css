@@ -224,17 +224,16 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 footer {
   border-top: 1px solid #e9eff2;
   width: 100%;
-  float: right;
+  clear: both;
   height: 70px;
   margin-top: 50px;
   color: grey;
-  padding-right: 17.666666667%;
-  line-height: 30px;
+  line-height: 70px;
 }
 
-footer p {
-  float: right;
+footer .made-by {
   color: inherit;
+  display: inline-block;
 }
 footer p a {
   color: inherit;
@@ -246,6 +245,8 @@ footer p a:hover {
 }
 
 footer .github {
-  float: left;
-  color: inherit;
+  color: black;
+  display: inline-block;
+  margin-left: 17.6666667%;
+  margin-right: 64.6666666%;
 }
