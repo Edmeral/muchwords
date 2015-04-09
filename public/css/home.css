@@ -228,12 +228,14 @@ footer {
   height: 70px;
   margin-top: 50px;
   color: grey;
-  line-height: 70px;
+  line-height: 32px;
 }
 
 footer .made-by {
   color: inherit;
   display: inline-block;
+  float: right;
+  margin-right: 17.6666667%;
 }
 footer p a {
   color: inherit;
@@ -245,8 +247,6 @@ footer p a:hover {
 }
 
 footer .github {
-  color: black;
   display: inline-block;
   margin-left: 17.6666667%;
-  margin-right: 64.6666666%;
 }
