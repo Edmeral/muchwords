@@ -180,7 +180,33 @@ $(function() {
   
   if (typeof Shepherd == 'undefined') 
     console.log('tour is off');
-  else 
-    console.log('tour is on');
+  else {
+    console.log(Shepherd);
+    var tour  = new Shepherd.Tour({
+       defaults: {
+        classes: 'shepherd-theme-arrows'
+       }
+    });
+
+      tour.addStep('welcome', {
+      text: ['Shepherd is a javascript library for guiding users through your app. It uses <a href="http://github.hubspot.com/tether/">Tether</a>, another open source library, to position all of its steps.', 'Tether makes sure your steps never end up off screen or cropped by an overflow. Try resizing your browser to see what we mean.'],
+      attachTo: '#cal-stats',
+      classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
+      buttons: [
+        {
+          text: 'Exit',
+          classes: 'shepherd-button-secondary',
+          action: tour.cancel
+        }, {
+          text: 'Next',
+          action: tour.next,
+          classes: 'shepherd-button-example-primary'
+        }
+      ]
+    });
+
+    tour.start();
+  }
+
   
 });
