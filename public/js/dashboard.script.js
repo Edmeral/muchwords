@@ -178,9 +178,7 @@ $(function() {
     }
   });
   
-  if (typeof Shepherd == 'undefined') 
-    console.log('tour is off');
-  else {
+  if (typeof Shepherd != 'undefined') {
     console.log(Shepherd);
     var tour  = new Shepherd.Tour({
        defaults: {
