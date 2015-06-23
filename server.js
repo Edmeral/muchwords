@@ -27,7 +27,7 @@ app
                  saveUninitialized: true,
                  resave: true,
                  store: new MongoStore({
-                  url: DBUrl
+                  mongooseConnection: mongoose.connection
                  })
                 }))
   .use(passport.initialize())
