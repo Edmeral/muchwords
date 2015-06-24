@@ -31,6 +31,9 @@
   </header>
     
     <div class="cal-container">
+      <% if (typeof deleteMessage != 'undefined') { %>
+      <div class="alert alert-success"><%= deleteMessage %></div>
+      <% } %>
       <h4>Activity in the last year</h4>
       <hr>
       <div class="cal-heatmap">

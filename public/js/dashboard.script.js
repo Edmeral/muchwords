@@ -76,6 +76,12 @@ $(function() {
   $(document).bind('keydown', 'Ctrl+s', savePost);
 
   /*
+  * Hiding the delete post message after a while
+  */
+  setTimeout(function() {
+    $('.cal-container .alert.alert-success').hide(500);
+  }, 2000);
+  /*
    * Drawing the calendar
   */
 

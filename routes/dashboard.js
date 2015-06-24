@@ -22,10 +22,10 @@ module.exports = function(app) {
             var tour = false;
             if (req.query.tour == 'true')
               tour  = true;
-
             res.render('dashboard/dashboard.ejs', { 
               content: content,
               calendar: JSON.stringify(req.calendar),
+              deleteMessage: req.flash('delete-message')[0],
               tour: tour
             });
           });
@@ -88,7 +88,11 @@ module.exports = function(app) {
         var content = post.content;
         var wordsCount = post.wordsCount + ' word' + (post.wordsCount == 1 ? '':'s');
         var date = moment(post.date).format('dddd, MMM Do YYYY');
-        res.render('dashboard/view.ejs', { content: content, date: date, wordsCount: wordsCount });
+        res.render('dashboard/view.ejs', { 
+          content: content, 
+          date: date, 
+          wordsCount: wordsCount,
+          id: post._id });
       }
       else 
         res.redirect('/');
@@ -127,6 +131,17 @@ module.exports = function(app) {
 
   .get('/dashboard/archives', isLoggedIn, function(req, res) {
     res.render('dashboard/archives.ejs');
+  })
+
+  .get('/dashboard/delete/:id', isLoggedIn, function(req, res) {
+    Post.remove({ _id: req.params.id, username: req.user.username }, function(err) {
+      if (err) {
+        req.flash('delete-message', 'An error occurred while deleting the post');
+        return res.redirect('/dashboard');
+      }
+      req.flash('delete-message', 'Post deleted successfully!');
+      res.redirect('/dashboard');
+    });
   });
 };
 

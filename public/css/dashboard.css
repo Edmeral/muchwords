@@ -289,13 +289,21 @@ a {
 
 /* view.ejs styles */
 
-#info * {
+#info p {
   display: inline-block;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: grey;
 }
 
+#info a {
+  color: inherit;
+  margin-right: 4px;
+}
+
+#info a:hover {
+  color: #333333;
+}
 #info #date {
   float: right;
 }
