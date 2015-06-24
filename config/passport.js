@@ -29,7 +29,7 @@ module.exports = function (passport) {
           return done(err);
 
         if (user) 
-          return done(null, false, req.flash('signup-message', 'User Already registred'));
+          return done(null, false, req.flash('signup-message', 'User Already registered'));
 
         else {
           var newUser = new User();
