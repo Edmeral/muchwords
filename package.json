@@ -34,7 +34,7 @@
     "express-session": "^1.7.4",
     "moment": "^2.8.1",
     "moment-timezone": "^0.2.2",
-    "mongoose": "^3.8.14",
+    "mongoose": "^4.0.6",
     "morgan": "^1.2.2",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0"
