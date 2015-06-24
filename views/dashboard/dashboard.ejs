@@ -32,7 +32,11 @@
     
     <div class="cal-container">
       <% if (typeof deleteMessage != 'undefined') { %>
-      <div class="alert alert-success"><%= deleteMessage %></div>
+        <% if (deleteError) { %>
+          <div class="alert alert-danger"><%= deleteMessage %></div>
+        <% } else {%>
+          <div class="alert alert-success"><%= deleteMessage %></div>
+        <% } %>
       <% } %>
       <h4>Activity in the last year</h4>
       <hr>

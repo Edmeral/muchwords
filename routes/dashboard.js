@@ -26,6 +26,7 @@ module.exports = function(app) {
               content: content,
               calendar: JSON.stringify(req.calendar),
               deleteMessage: req.flash('delete-message')[0],
+              deleteError: req.flash('delete-error')[0],
               tour: tour
             });
           });
@@ -134,9 +135,15 @@ module.exports = function(app) {
   })
 
   .get('/dashboard/delete/:id', isLoggedIn, function(req, res) {
-    Post.remove({ _id: req.params.id, username: req.user.username }, function(err) {
+    Post.remove({ _id: req.params.id, username: req.user.username }, function(err, removed) {
       if (err) {
         req.flash('delete-message', 'An error occurred while deleting the post');
+        req.flash('delete-error', true);
+        return res.redirect('/dashboard');
+      }
+      if (removed.result.n === 0) {
+        req.flash('delete-message', 'Error: Can\'t delete this post!');
+        req.flash('delete-error', true);
         return res.redirect('/dashboard');
       }
       req.flash('delete-message', 'Post deleted successfully!');
