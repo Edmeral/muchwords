@@ -25,8 +25,8 @@ module.exports = function(app) {
             res.render('dashboard/dashboard.ejs', { 
               content: content,
               calendar: JSON.stringify(req.calendar),
-              deleteMessage: req.flash('delete-message')[0],
-              deleteError: req.flash('delete-error')[0],
+              deleteMessage: req.flash('delete-message'),
+              deleteError: req.flash('delete-error'),
               tour: tour
             });
           });

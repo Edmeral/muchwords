@@ -31,8 +31,8 @@
   </header>
     
     <div class="cal-container">
-      <% if (typeof deleteMessage != 'undefined') { %>
-        <% if (deleteError) { %>
+      <% if (deleteMessage.length > 0) { %>
+        <% if (deleteError.length > 0) { %>
           <div class="alert alert-danger"><%= deleteMessage %></div>
         <% } else {%>
           <div class="alert alert-success"><%= deleteMessage %></div>
