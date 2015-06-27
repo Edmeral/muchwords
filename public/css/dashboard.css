@@ -307,3 +307,13 @@ a {
 #info #date {
   float: right;
 }
+
+#view > form {
+  display: none;
+  width: 100%;
+}
+#view div {
+  font-family: 'montserratlight', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 20px !important;
+}
