@@ -71,7 +71,7 @@ module.exports = function(app) {
           }
         });
 
-      res.redirect('/');
+      res.redirect('/dashboard');
     })
 
   // For displaying an individual post
