@@ -96,7 +96,7 @@ module.exports = function(app) {
           id: post._id });
       }
       else 
-        res.redirect('/');
+        res.redirect('/dashboard');
     });
   })
 
