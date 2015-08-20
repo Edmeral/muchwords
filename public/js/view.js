@@ -21,7 +21,7 @@ $('#edit').click(function(e) {
   function savePost() {
     changed = false;
     submit.text('Saving..');
-    $.post('/dashboard/edit/function' + id, $('form').serialize(), function() {
+    $.post('/dashboard/edit/' + id, $('form').serialize(), function() {
       if(!changed) {
         submit.text('Saved!');
         setTimeout(function() {
