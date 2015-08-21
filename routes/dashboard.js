@@ -6,7 +6,8 @@ var calendarHandler = require('../routes/api').calendarHandler;
 module.exports = function(app) {
   app
     .get('/dashboard', isLoggedIn, calendarHandler, function(req, res) {
-
+        // so that we can choose which page to redirect to after deleting a post
+        req.session.return_to = '/dashboard'; 
         Post.findOne({ 'username': req.user.username})
           .sort({ date: -1 })
           .exec(function(err, post) {
@@ -131,6 +132,8 @@ module.exports = function(app) {
   })
 
   .get('/dashboard/archives', isLoggedIn, function(req, res) {
+    // so that we can choose which page to redirect to after deleting a post
+    req.session.return_to = '/dashboard/archives';
     res.render('dashboard/archives.ejs');
   })
 
@@ -139,15 +142,15 @@ module.exports = function(app) {
       if (err) {
         req.flash('delete-message', 'An error occurred while deleting the post');
         req.flash('delete-error', true);
-        return res.redirect('/dashboard');
+        return res.redirect(req.session.return_to);
       }
       if (removed.result.n === 0) {
         req.flash('delete-message', 'Error: Can\'t delete this post!');
         req.flash('delete-error', true);
-        return res.redirect('/dashboard');
+        return res.redirect(req.session.return_to);
       }
       req.flash('delete-message', 'Post deleted successfully!');
-      res.redirect('/dashboard');
+      res.redirect(req.session.return_to);
     });
   })
 
