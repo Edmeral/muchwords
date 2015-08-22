@@ -19,7 +19,7 @@ app
   .use(cookieParser())
   .use(bodyParser.urlencoded({ extended: true }))
   .use(bodyParser.json())
-  .use(express.static(__dirname + '/public'), { maxage: 43200000 })
+  .use(express.static(__dirname + '/public', { maxage: 43200000 }))
 
   .set('view engine', 'ejs')
 
