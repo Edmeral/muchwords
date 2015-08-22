@@ -6,6 +6,11 @@ function clickHandler(date, nb) {
 
 $(function() {
   $.getJSON('/dashboard/posts', function(posts) {
+    // posts is empty
+    if (Object.keys(posts).length === 0) {
+      $('.cal-container').append('You haven\'t wrote anything yet! Start <a href="/dashboard">writing</a>.');
+    }
+
     for (var year in posts) {
       var calContainer = $('.cal-container');
       var calDiv = $(document.createElement('div'));
