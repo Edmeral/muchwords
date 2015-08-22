@@ -29,6 +29,16 @@
     </div>
   </header>
   
+  <div class="cal-container">
+    <% if (deleteMessage.length > 0) { %>
+      <% if (deleteError.length > 0) { %>
+      <div class="alert alert-danger"><%= deleteMessage %></div>
+          <% } else {%>
+        <div class="alert alert-success"><%= deleteMessage %></div>
+      <% } %>
+    <% } %>
+  </div>
+
   <script src="//d3js.org/d3.v3.min.js"></script>
   <script src="/js/cal-heatmap.min.js"></script>
   <script src="/js/jquery.min.js"></script>

@@ -134,7 +134,10 @@ module.exports = function(app) {
   .get('/dashboard/archives', isLoggedIn, function(req, res) {
     // so that we can choose which page to redirect to after deleting a post
     req.session.return_to = '/dashboard/archives';
-    res.render('dashboard/archives.ejs');
+    res.render('dashboard/archives.ejs', {
+      deleteMessage: req.flash('delete-message'),
+      deleteError: req.flash('delete-error')
+    });
   })
 
   .get('/dashboard/delete/:id', isLoggedIn, function(req, res) {
