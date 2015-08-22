@@ -1,3 +1,8 @@
+// Hiding the delete post message after a while
+setTimeout(function() {
+  $('.cal-container .alert').hide(500);
+}, 2000);
+
 function clickHandler(date, nb) {
   var timestamp = date.getTime() / 1000;
   if (nb !== null)
