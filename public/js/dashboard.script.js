@@ -8,26 +8,26 @@ $(function() {
       return 'You have unsaved changes, are you sure you want to navigate away?';
   };
 
-  function savePost() {
-    changed = false;
-    submit.text('Saving..');
-    $.post('/dashboard', $('form').serialize(), function() {
-      if(!changed) {
-        submit.text('Saved!');
-        setTimeout(function() {
-          submit.text('Draft');
-        }, 2000);
-      }
-    });
+  // function savePost() {
+  //   changed = false;
+  //   submit.text('Saving..');
+  //   $.post('/dashboard', $('form').serialize(), function() {
+  //     if(!changed) {
+  //       submit.text('Saved!');
+  //       setTimeout(function() {
+  //         submit.text('Draft');
+  //       }, 2000);
+  //     }
+  //   });
 
-    return false;
-  }
+  //   return false;
+  // }
 
-  // Saving the post every 5 seconds, if the content changes
-  setInterval(function() {
-    if (changed) 
-      savePost();
-  }, 5000);
+  // // Saving the post every 5 seconds, if the content changes
+  // setInterval(function() {
+  //   if (changed) 
+  //     savePost();
+  // }, 5000);
 
   // Defining the circular progress bar
   $(".dial").knob({ 
@@ -66,14 +66,24 @@ $(function() {
 
   textChangeHandler();
 
+  lazySave = _.debounce(function() {
+    submit.text('Saving..');
+    $.post('/dashboard', $('form').serialize(), function() {
+      submit.text('Saved!');
+      setTimeout(function() {
+        submit.text('Draft');
+      }, 2000);
+    });
+  }, 500);
+
   content.keyup(function() {
-    changed = true;
     textChangeHandler();
+    lazySave();
   });
 
   // Adding to keyboard shortcut to save the post
-  $('#content').bind('keydown', 'Ctrl+s', savePost);
-  $(document).bind('keydown', 'Ctrl+s', savePost);
+  // $('#content').bind('keydown', 'Ctrl+s', savePost);
+  // $(document).bind('keydown', 'Ctrl+s', savePost);
 
   /*
   * Hiding the delete post message after a while
