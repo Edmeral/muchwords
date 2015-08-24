@@ -67,6 +67,7 @@ $(function() {
   textChangeHandler();
 
   lazySave = _.debounce(function() {
+    changed = false;
     submit.text('Saving..');
     $.post('/dashboard', $('form').serialize(), function() {
       submit.text('Saved!');
@@ -77,6 +78,7 @@ $(function() {
   }, 500);
 
   content.keyup(function() {
+    changed = true;
     textChangeHandler();
     lazySave();
   });
