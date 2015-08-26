@@ -64,9 +64,7 @@ $(function() {
     $('form p').text(length + (length == 1 ? ' word':' words') + '.');
   }
 
-  textChangeHandler();
-
-  lazySave = _.debounce(function() {
+  function savePost() {
     changed = false;
     submit.text('Saving..');
     $.post('/dashboard', $('form').serialize(), function() {
@@ -75,7 +73,11 @@ $(function() {
         submit.text('Draft');
       }, 2000);
     });
-  }, 500);
+  }
+
+  textChangeHandler();
+
+  lazySave = _.debounce(savePost, 500);
 
   content.keyup(function() {
     changed = true;
@@ -84,8 +86,8 @@ $(function() {
   });
 
   // Adding to keyboard shortcut to save the post
-  // $('#content').bind('keydown', 'Ctrl+s', savePost);
-  // $(document).bind('keydown', 'Ctrl+s', savePost);
+  $('#content').bind('keydown', 'Ctrl+s', savePost);
+  $(document).bind('keydown', 'Ctrl+s', savePost);
 
   /*
   * Hiding the delete post message after a while
