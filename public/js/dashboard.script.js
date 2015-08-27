@@ -88,6 +88,8 @@ $(function() {
   // Adding to keyboard shortcut to save the post
   $('#content').bind('keydown', 'Ctrl+s', savePost);
   $(document).bind('keydown', 'Ctrl+s', savePost);
+  $('#content').bind('keydown', 'meta+s', savePost);
+  $(document).bind('keydown', 'meta+s', savePost);
 
   /*
   * Hiding the delete post message after a while
