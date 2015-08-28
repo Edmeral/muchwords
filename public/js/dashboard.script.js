@@ -8,27 +8,6 @@ $(function() {
       return 'You have unsaved changes, are you sure you want to navigate away?';
   };
 
-  // function savePost() {
-  //   changed = false;
-  //   submit.text('Saving..');
-  //   $.post('/dashboard', $('form').serialize(), function() {
-  //     if(!changed) {
-  //       submit.text('Saved!');
-  //       setTimeout(function() {
-  //         submit.text('Draft');
-  //       }, 2000);
-  //     }
-  //   });
-
-  //   return false;
-  // }
-
-  // // Saving the post every 5 seconds, if the content changes
-  // setInterval(function() {
-  //   if (changed) 
-  //     savePost();
-  // }, 5000);
-
   // Defining the circular progress bar
   $(".dial").knob({ 
     'min':0,
