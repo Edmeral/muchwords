@@ -197,6 +197,4 @@ $(function() {
 
    tour.start();
   }
-
-  
 });
