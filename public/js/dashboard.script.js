@@ -76,6 +76,7 @@ $(function() {
   setTimeout(function() {
     $('.cal-container .alert').hide(500);
   }, 2000);
+  
   /*
    * Drawing the calendar
   */
