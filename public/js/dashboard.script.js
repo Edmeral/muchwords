@@ -76,7 +76,7 @@ $(function() {
   setTimeout(function() {
     $('.cal-container .alert').hide(500);
   }, 2000);
-  
+
   /*
    * Drawing the calendar
   */
@@ -179,23 +179,4 @@ $(function() {
       });
     }
   });
-  
-  if (typeof Shepherd != 'undefined') {
-   var tour;
-
-   tour = new Shepherd.Tour({
-    defaults: {
-      classes: 'shepherd-theme-arrows'
-    }
-  });
-
-   tour.addStep('example', {
-    title: 'Example Shepherd',
-    text: 'Creating a Shepherd is easy too! Just create ...',
-    attachTo: '#content',
-    advanceOn: '.docs-link click'
-  });
-
-   tour.start();
-  }
 });
