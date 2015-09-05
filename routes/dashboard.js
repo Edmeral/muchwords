@@ -157,7 +157,7 @@ module.exports = function(app) {
     });
   })
 
-  .post('/dashboard/edit/:id', isLoggedIn, function(req, res) {
+  .put('/dashboard/edit/:id', isLoggedIn, function(req, res) {
     Post.update({ _id: req.params.id, username: req.user.username }, { content: req.body.content }, function(err) {
       if (err) console.log(err);
       res.send('OK');

@@ -21,15 +21,18 @@ $('#edit').click(function(e) {
   function savePost() {
     changed = false;
     submit.text('Saving..');
-    $.post('/dashboard/edit/' + id, $('form').serialize(), function() {
-      if(!changed) {
-        submit.text('Saved!');
-        setTimeout(function() {
-          submit.text('Draft');
-        }, 2000);
+    $.ajax({
+      url: '/dashboard/edit/' + id, 
+      type: 'PUT',
+      success: function() {
+        if(!changed) {
+          submit.text('Saved!');
+          setTimeout(function() {
+            submit.text('Draft');
+          }, 2000);
+        }
       }
     });
-
     return false;
   }
 
