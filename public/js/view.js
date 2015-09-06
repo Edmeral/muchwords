@@ -24,6 +24,7 @@ $('#edit').click(function(e) {
     $.ajax({
       url: '/dashboard/edit/' + id, 
       type: 'PUT',
+      data: $('form').serialize(),
       success: function() {
         if(!changed) {
           submit.text('Saved!');
