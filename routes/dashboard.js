@@ -37,7 +37,7 @@ module.exports = function(app) {
     .post('/dashboard', isLoggedIn, function(req, res) {
 
       var content = req.body.content;
-      var wordsCount = content.replace(/^\s+|\s+$/g, '').split(/\s+/).length;
+      var wordsCount = countWords(content);
       if (content === '') wordsCount = 0;
       
       Post
@@ -178,4 +178,8 @@ function isSameDay(moment1, moment2, timezone) {
   var m1 = moment1;
   var m2 = moment2;
   return m1.tz(timezone).isSame(m2.tz(timezone), 'day');
+}
+
+function countWords(str) {
+  return str.replace(/^\s+|\s+$/g, '').split(/\s+/).length;
 }
