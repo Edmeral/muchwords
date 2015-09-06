@@ -24,15 +24,15 @@ $('#edit').click(function(e) {
     $.ajax({
       url: '/dashboard/edit/' + id, 
       type: 'PUT',
-      data: $('form').serialize(),
-      success: function() {
-        if(!changed) {
-          submit.text('Saved!');
-          setTimeout(function() {
-            submit.text('Draft');
-          }, 2000);
-        }
-      }
+      data: $('form').serialize()
+    })
+     .done(function() {
+       if(!changed) {
+         submit.text('Saved!');
+         setTimeout(function() {
+          submit.text('Draft');
+         }, 2000);
+       }
     });
     return false;
   }
