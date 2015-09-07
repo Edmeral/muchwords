@@ -158,7 +158,6 @@ module.exports = function(app) {
   })
 
   .put('/dashboard/:id', isLoggedIn, function(req, res) {
-    console.log(req.body.content);
     Post.update({ _id: req.params.id, username: req.user.username },
      { content: req.body.content, wordsCount: countWords(req.body.content) }, 
      function(err) {
