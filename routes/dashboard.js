@@ -157,7 +157,7 @@ module.exports = function(app) {
     });
   })
 
-  .put('/dashboard/edit/:id', isLoggedIn, function(req, res) {
+  .put('/dashboard/:id', isLoggedIn, function(req, res) {
     console.log(req.body.content);
     Post.update({ _id: req.params.id, username: req.user.username },
      { content: req.body.content, wordsCount: countWords(req.body.content) }, 

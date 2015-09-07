@@ -22,7 +22,7 @@ $('#edit').click(function(e) {
     changed = false;
     submit.text('Saving..');
     $.ajax({
-      url: '/dashboard/edit/' + id, 
+      url: '/dashboard/' + id, 
       type: 'PUT',
       data: $('form').serialize()
     })
