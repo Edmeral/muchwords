@@ -56,12 +56,12 @@ $(function() {
 
   textChangeHandler();
 
-  lazySave = _.debounce(savePost, 500);
+  debouncedSave = _.debounce(savePost, 500);
 
   content.keyup(function() {
     changed = true;
     textChangeHandler();
-    lazySave();
+    debouncedSave();
   });
 
   // Adding to keyboard shortcut to save the post
