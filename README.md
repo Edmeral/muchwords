@@ -12,3 +12,5 @@ $ node server.js
 ```
 
 Head out to [http://localhost:1994](http://localhost:1994) to see the website.
+
+MongoDB version: 3.6
