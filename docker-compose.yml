@@ -7,3 +7,12 @@ services:
     volumes:
       - "./shared-mongo:/shared-mongo"
 
+  app:
+    build: .
+    container_name: muchwords-app
+    ports:
+      - "1994:1994"
+    depends_on:
+      - mongo
+    env_file:
+      - .docker_env
