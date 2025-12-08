@@ -6,6 +6,7 @@ services:
       - "27017:27017"
     volumes:
       - "./shared-mongo:/shared-mongo"
+      - mongo-data:/data/db
 
   app:
     build: .
@@ -16,3 +17,6 @@ services:
       - mongo
     env_file:
       - .docker_env
+
+volumes:
+  mongo-data:
