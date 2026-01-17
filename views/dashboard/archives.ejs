@@ -18,7 +18,21 @@
 </head>
 
 <body class="preload">
-  
+  <script>
+    // Apply theme before render to prevent flash
+    (function() {
+      var userTheme = '<%= theme %>';
+      window.userThemePreference = userTheme;
+      var effectiveTheme = userTheme;
+      if (userTheme === 'system') {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      if (effectiveTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
   <header>
     <a id="header-dashboard" href="/dashboard"></a>
     <div id="header-navigation">
@@ -42,6 +56,10 @@
   <script src="/js/cal-heatmap.min.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/archives.script.js"></script>
+  <script src="/js/theme.js"></script>
+  <script>
+    Theme.init('<%= theme %>');
+  </script>
 
   <%- include ../analytics.ejs %>
 

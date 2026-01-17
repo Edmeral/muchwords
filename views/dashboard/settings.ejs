@@ -17,7 +17,21 @@
 </head>
 
 <body class="preload">
-  
+  <script>
+    // Apply theme before render to prevent flash
+    (function() {
+      var userTheme = '<%= theme %>';
+      window.userThemePreference = userTheme;
+      var effectiveTheme = userTheme;
+      if (userTheme === 'system') {
+        effectiveTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      }
+      if (effectiveTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
+
   <header>
     <a id="header-dashboard" href="/dashboard"></a>
     <div id="header-navigation">
@@ -51,6 +65,16 @@
         <p id="timezone-message">You can only change the timezone if it's different than the one you registered with.</p>
       </div>
 
+      <div class="form-group">
+        <label>Theme</label>
+        <select name="theme" id="theme-select" class="form-control">
+          <option value="system" <%= theme === 'system' ? 'selected' : '' %>>System</option>
+          <option value="light" <%= theme === 'light' ? 'selected' : '' %>>Light</option>
+          <option value="dark" <%= theme === 'dark' ? 'selected' : '' %>>Dark</option>
+        </select>
+        <p>Choose your preferred theme. "System" follows your device settings.</p>
+      </div>
+
       <button type="submit" class="btn btn-success pull-right" disabled>Save</btn>
 
     </form>
@@ -63,6 +87,16 @@
     var savedTimezone = '<%= timezone %>';
   </script>
   <script src="/js/settings.script.js"></script>
+  <script src="/js/theme.js"></script>
+  <script>
+    Theme.init('<%= theme %>');
+
+    // Live theme preview when changing selector
+    $('#theme-select').on('change', function() {
+      var newTheme = $(this).val();
+      Theme.update(newTheme);
+    });
+  </script>
 
   <%- include ../analytics.ejs %>
 

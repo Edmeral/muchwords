@@ -1,12 +1,13 @@
 $(function() {
     $('body').removeClass('preload');
     var newtimezone = jstz.determine().name();
+    var $timezoneSelect = $('select[name="timezone"]');
 
-    if ($('option').text() != newtimezone) {
+    if ($timezoneSelect.find('option').text() != newtimezone) {
       var newoption = document.createElement('option');
       $(newoption).attr('value', newtimezone);
       $(newoption).text(newtimezone);
-      $('select').append(newoption);
+      $timezoneSelect.append(newoption);
       $('#timezone-message').remove();
     }
 

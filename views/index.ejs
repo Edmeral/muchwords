@@ -32,6 +32,15 @@
   <title>MuchWords - Write 500 words every day</title>
 </head>
 <body>
+  <script>
+    // Apply theme before render to prevent flash
+    (function() {
+      var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (prefersDark) {
+        document.body.classList.add('dark-mode');
+      }
+    })();
+  </script>
 
   <div class="login-modal">
    <div class="login-box">

@@ -23,12 +23,13 @@ module.exports = function(app) {
             var tour = false;
             if (req.query.tour == 'true')
               tour  = true;
-            res.render('dashboard/dashboard.ejs', { 
+            res.render('dashboard/dashboard.ejs', {
               content: content,
               calendar: JSON.stringify(req.calendar),
               deleteMessage: req.flash('delete-message'),
               deleteError: req.flash('delete-error'),
-              tour: tour
+              tour: tour,
+              theme: req.user.theme || 'system'
             });
           });
       })
@@ -90,11 +91,13 @@ module.exports = function(app) {
         var content = post.content;
         var wordsCount = post.wordsCount + ' word' + (post.wordsCount == 1 ? '':'s');
         var date = moment(post.date).format('dddd, MMM Do YYYY');
-        res.render('dashboard/view.ejs', { 
-          content: content, 
-          date: date, 
+        res.render('dashboard/view.ejs', {
+          content: content,
+          date: date,
           wordsCount: wordsCount,
-          id: post._id });
+          id: post._id,
+          theme: req.user.theme || 'system'
+        });
       }
       else 
         res.redirect('/dashboard');
@@ -104,12 +107,14 @@ module.exports = function(app) {
   .get('/dashboard/settings', isLoggedIn, function(req, res) {
     res.render('dashboard/settings.ejs', {
       email: req.user.email || '',
-      timezone: req.user.timezone
+      timezone: req.user.timezone,
+      theme: req.user.theme || 'system'
     });
   })
   .post('/dashboard/settings', isLoggedIn, function(req, res) {
     var email = req.body.email;
     var timezone = req.body.timezone;
+    var theme = req.body.theme;
 
     User.findOne({'username': req.user.username}, function(err, user) {
 
@@ -119,12 +124,14 @@ module.exports = function(app) {
       else {
         user.email = req.body.email || user.email;
         user.timezone = req.body.timezone || user.timezone;
+        user.theme = req.body.theme || user.theme;
         user.save(function(err) {
           if (!err) message = 'New settings saved successfully!';
           res.render('dashboard/settings.ejs', {
             message: message,
             email: email,
-            timezone: timezone
+            timezone: timezone,
+            theme: theme || user.theme
           });
         });
       }
@@ -136,7 +143,8 @@ module.exports = function(app) {
     req.session.return_to = '/dashboard/archives';
     res.render('dashboard/archives.ejs', {
       deleteMessage: req.flash('delete-message'),
-      deleteError: req.flash('delete-error')
+      deleteError: req.flash('delete-error'),
+      theme: req.user.theme || 'system'
     });
   })
 

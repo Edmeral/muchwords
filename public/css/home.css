@@ -1,9 +1,31 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700|Raleway:400,200|Oswald);
 
+/* Theme Variables for Home Page */
+:root {
+  --home-bg: #fff;
+  --home-text: #333332;
+  --home-text-secondary: #474f5c;
+  --home-text-light: grey;
+  --home-border: #e9eff2;
+  --home-link: #BF7830;
+  --home-link-hover: #955725;
+}
+
+body.dark-mode {
+  --home-bg: #1a1a1a;
+  --home-text: #e0e0e0;
+  --home-text-secondary: #b0b0b0;
+  --home-text-light: #888888;
+  --home-border: #333;
+  --home-link: #e9a060;
+  --home-link-hover: #f0b070;
+}
+
 body {
   color: white;
   margin: 0;
   font-family: Lato, Helvetica, Arial, sans-serif;
+  background-color: var(--home-bg);
 }
 
 .hero {
@@ -158,7 +180,7 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 #explain div {
   float: left;
-  color: #333332;
+  color: var(--home-text);
   width: 28%;
   padding: 0px;
   margin-left: 2.666666667%;
@@ -166,16 +188,16 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
   text-align: center;
 }
 #explain p {
-  color: #474f5c;
+  color: var(--home-text-secondary);
 }
 
 #explain a {
-  color: #BF7830;
+  color: var(--home-link);
   text-decoration: none;
 }
 
 #explain a:hover {
-  color: #955725;
+  color: var(--home-link-hover);
   text-decoration: none;
 }
 
@@ -222,12 +244,12 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 */
 
 footer {
-  border-top: 1px solid #e9eff2;
+  border-top: 1px solid var(--home-border);
   width: 100%;
   clear: both;
   height: 50px;
   margin-top: 270px;
-  color: grey;
+  color: var(--home-text-light);
 }
 
 footer .made-by {
@@ -242,7 +264,7 @@ footer p a {
   font-weight: bold;
 }
 footer p a:hover {
-  color: #403e3e;
+  color: var(--home-text);
 }
 
 footer .github {

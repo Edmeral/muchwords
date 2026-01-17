@@ -10,7 +10,7 @@ module.exports.default = function(app) {
     .get('/dashboard/calendar', isLoggedIn, calendarHandler, function(req, res) {
       res.json(req.calendar);
     })
-  
+
   // Getting a json file for all posts sorted by year
   .get('/dashboard/posts', isLoggedIn, function(req, res) {
     Post.find({ 'username': req.user.username }, function(err, posts) {
@@ -40,9 +40,6 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
-function isSameDay(moment1, moment2) {
-  return moment1.isSame(moment2, 'day');
-}
 
 function calendarHandler(req, res, next) {
   Post

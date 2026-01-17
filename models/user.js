@@ -5,7 +5,8 @@ var userSchema = mongoose.Schema({
     username: String,
     password: String,
     email: { type: String, default: ''},
-    timezone: { type: String, default: 'Europe/London'}
+    timezone: { type: String, default: 'Europe/London'},
+    theme: { type: String, default: 'system', enum: ['light', 'dark', 'system'] }
 });
 
 userSchema.methods.generateHash = function(password) {
